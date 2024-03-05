@@ -12,7 +12,7 @@ var getConnection = ()=>{
         host     : "localhost",
         user     : "root",
         password : "",
-        database : "filmek"
+        database : "vakterkep"
     })
 };
 
