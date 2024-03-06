@@ -43,16 +43,18 @@ function login() {
     if (regExp.test(fn) && regExp.test(pw)) {       
         hash(pw).then((hex) => {
             console.log(hex);
+            console.log("select * from felhasznalo where nev='"+fn+"' and jelszo='"+hex+"'");
             LekerdezesEredmenye(
-                "select * from felhasznalo where nev='"+fn+"' and password='"+hex+"'"
+                "select * from felhasznalo where nev='"+fn+"' and jelszo='"+hex+"'"
             ).then((response)=> {
                 console.log(response)
                 if (response.length==1) {
-                    document.getElementById("loginForm").style.display="none";
+                    // document.getElementById("bejelentkezesmodal").hide()
                     let fnS=document.getElementById("fnShow");
-                    fnS.innerHTML="Felhasznló: "+response[0].nev;
                     localStorage.setItem("nev",response[0].nev);
-                    localStorage.setItem("jog",response[0].jog);
+                    localStorage.setItem("admin",response[0].admin);
+                    // location.reload();
+                    fnS.innerHTML="Felhasznló: "+localStorage.getItem("nev");
                     if (response[0].jog==1) {
                         fnS.innerHTML+=" (admin)";
                     }
@@ -96,31 +98,30 @@ const LekerdezesEredmenye = (lekerdezes) => {
         }
     });
 }
-function erosAJelszo(pw,fn) {
+function erosAJelszo(pw,fn){
 
-    //kisbetű, nagybetű, szám, van benne spéci karakter (._)
-    //nem tartalmazhatja a felhasználónevet
-    const kisBetu=/[a-z]/;
-    const nagyBetu=/[A-Z]/;
-    const szam=/[0-9]/;
-    const speci=/[\.\_]/;
-    if (!(kisBetu.test(pw) && nagyBetu.test(pw) && 
-        szam.test(pw) && speci.test(pw) &&
-        !pw.includes(fn))) {
+    const kisbetu = /[a-z]/
+    const nagybetu = /[A-Z]/
+    const szam = /[0-9]/
+    const speci = /\.\_/
+    if (kisbetu.test(pw)
+        && nagybetu.test(pw)
+        && szam.test(pw)
+        && speci.test(pw) 
+        && !pw.includes(fn)) {
+        console.log("nem jó")
         return false;
     }
 
-    //nincs benne számsorozat, ami hármnál hosszabb: 123456 jó:9154
-    //nincs benne betűsorozat, ami hármnál hosszabb: abcdef
     for (let i = 0; i < pw.length-2; i++) {
-        if (pw[i].charCodeAt()+1==pw[i+1].charCodeAt() &&
-            pw[i+1].charCodeAt()+1==pw[i+2].charCodeAt()) {
-                return false;
-            }
+        if (pw[i].charCodeAt()+1 == pw[i +1].charCodeAt()&&
+            pw[i+1].charCodeAt()+1 == pw[i +2].charCodeAt()) {
+            return false;
+        }
     }
+
     return true;
 }
-
 function infoHozzaad(uzi, info, regBtn) {
     info.innerHTML+=uzi;
     regBtn.disabled=false;    
@@ -142,19 +143,28 @@ function fnEllenoriz(fn) {
     return [true,""];
 }
 
-function emailEllenoriz(email) {        
+async function emailEllenoriz(email) {      
+    console.log(email.checkValidity(), email);  
     if (!email.checkValidity()) {
-        return [false," Az emailcím nem helyes!"];
+        return [false, "Az emailcím nem helyes!"];
     } else {
-        LekerdezesEredmenye(
-            "select count(*) as darab from felhasznalo where email='"+email.value+"'"
-        ).then((response)=> {
-            if (response[0].darab!=0) {
-                return [false," Már regisztráltak ilyen emaillel!"];
+        console.log("select count(*) as darab from felhasznalo where email='" + email.value + "'");
+        
+        try {
+            const response = await LekerdezesEredmenye("select count(*) as darab from felhasznalo where email='" + email.value + "'");
+            console.log(response);
+            console.log(response[0].darab);
+            console.log(response[0].darab != 0);
+            if (response[0].darab != 0) {
+                console.log("bent vagy?");
+                return [false, "Már regisztráltak ilyen emaillel!"];
             }
-        });   
+        } catch (error) {
+            console.error(error);
+            return [false, "Hiba történt az adatbázis lekérdezése során."];
+        }
     }
-    return [true,""];
+    return [true, ""];
 }
 
 function pwEllenoriz(pw,pwre) {
@@ -182,6 +192,7 @@ function regisztracio() {
     let joe=fnEll[0];
 
     const emailEll=emailEllenoriz(email);
+    console.log(emailEll)
     infoHozzaad(emailEll[1],info,regBtn);
     joe=emailEll[0]&& joe;
 
@@ -192,7 +203,7 @@ function regisztracio() {
     if (joe) {
         hash(pw.value).then((hex) => {
             LekerdezesEredmenye(
-                "INSERT INTO felhasznalo VALUES (NULL, '"+fn.value+"', '"+hex+"', '0', '"+email.value+"');"
+                "INSERT INTO felhasznalo VALUES (NULL, '"+fn.value+"', '"+hex+"', '"+email.value+"',  '0');"
             ).then((response)=> {
                 console.log("feltöltve");
             });  
