@@ -40,83 +40,100 @@
               </li>
             </ul>
             <form class="d-flex" role="search">
-                <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
-            </button>
             
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                    ...
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-                </div>
-            </div>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Bejelentkezés</button>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Regisztráció</button>                 
+
+            <!--Bejelentkezes-->
+            <div class="modal fade" id="bejelentkezesmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Bejelentkezés</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="loginForm">
+                      <!-- <p>
+                          <label>Lekérdezés: </label>
+                          <input type="text" id="lekerdezesText">
+                      </p>
+                      <input type="button" value="LekérdezésEredeménye" id="lekerdezesBtn" onclick="LekerdezesEredmenye()"> -->
+              
+                      <label for="fn">Felhasználónév: </label>
+                      <input type="text" id="fn" placeholder="Felhasználónév"><br>
+                      <label for="pw">Jelszó: </label>
+                      <input type="password" id="pw" placeholder="Jelszó"><br>
+                      
+                      
+                  </form>
+                  </div>
+                  <div class="modal-footer">
+                    <input type="button" value="Belépés" onclick="login()">
+                  </div>
+              </div>
+              </div>
+          </div>
+
+
+            <!--Regisztráció-->
+            <div class="modal fade" id="regisztraciomodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Regisztácó </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="regisztracio">
+                      <label for="regfn">Felhasználónév</label>
+                      <input type="text" id="regfn"
+                          required pattern="[a-zA-Z0-9._]{3,16}"
+                          placeholder="Add meg a felhasználónevet!"
+                          minlength="3" maxlength="16"> 
+                          <span id="fnInfo"></span><br>
+                      <label for="regemail">e-mail cím:</label>
+                      <input type="email" id="regemail"
+                          required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}"
+                          placeholder="Add meg az email címedet!">
+                          <span id="emailInfo"></span><br>
+              
+                      <label for="regpw">Jelszó</label>
+                      <input type="password" id="regpw"
+                          required pattern="[a-zA-Z0-9._]{8,16}"
+                          placeholder="Jelszó!"
+                          minlength="3" maxlength="16">
+                          <span id="pwInfo"></span><br>
+              
+                      <label for="regpwre">Jelszó újra</label>
+                      <input type="password" id="regpwre"
+                          required pattern="[a-zA-Z0-9._]{8,16}"
+                          placeholder="Jelszó újra!"
+                          minlength="3" maxlength="16"> 
+                          <span id="pwreInfo"></span><br>
+                      
+                      <p id="info">?????</p>
+              
+                      
+                  </form>
+                  </div>
+                  <div class="modal-footer">
+                  <input type="button" value="Regisztráció" 
+                            id="regBtn"
+                            onclick="regisztracio()">
+                  </div>
+              </div>
+              </div>
+          </div>
+
+
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bejelentkezesmodal">Bejelentkezés</button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#regisztraciomodal">Regisztráció</button>                 
             </form>
           </div>
         </div>
       </nav>
-    <form id="loginForm">
-        <!-- <p>
-            <label>Lekérdezés: </label>
-            <input type="text" id="lekerdezesText">
-        </p>
-        <input type="button" value="LekérdezésEredeménye" id="lekerdezesBtn" onclick="LekerdezesEredmenye()"> -->
+    
 
-        <label for="fn">Felhasználónév: </label>
-        <input type="text" id="fn" placeholder="Felhasználónév"><br>
-        <label for="pw">Jelszó: </label>
-        <input type="password" id="pw" placeholder="Jelszó"><br>
-        <input type="button" value="Belépés" onclick="login()">
-        
-    </form>
-
-    <form id="regisztracio">
-        <label for="regfn">Felhasználónév</label>
-        <input type="text" id="regfn"
-            required pattern="[a-zA-Z0-9._]{3,16}"
-            placeholder="Add meg a felhasználónevet!"
-            minlength="3" maxlength="16"> 
-            <span id="fnInfo"></span><br>
-        <label for="regemail">e-mail cím:</label>
-        <input type="email" id="regemail"
-            required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}"
-            placeholder="Add meg az email címedet!">
-            <span id="emailInfo"></span><br>
-
-        <label for="regpw">Jelszó</label>
-        <input type="password" id="regpw"
-            required pattern="[a-zA-Z0-9._]{8,16}"
-            placeholder="Jelszó!"
-            minlength="3" maxlength="16">
-            <span id="pwInfo"></span><br>
-
-        <label for="regpwre">Jelszó újra</label>
-        <input type="password" id="regpwre"
-            required pattern="[a-zA-Z0-9._]{8,16}"
-            placeholder="Jelszó újra!"
-            minlength="3" maxlength="16"> 
-            <span id="pwreInfo"></span><br>
-        
-        <p id="info">?????</p>
-
-        <input type="button" value="Regisztráció" 
-                id="regBtn"
-                onclick="regisztracio()">
-    </form>
+    
 
     <p id="fnShow"></p>
     <script src="script.js"></script>
