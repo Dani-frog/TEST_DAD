@@ -127,21 +127,21 @@ function infoHozzaad(uzi, info, regBtn) {
     regBtn.disabled=false;    
 }
 
-function fnEllenoriz(fn) {
+async function fnEllenoriz(fn) {
     if (!fn.checkValidity()) {
         return [false, "A felhasználónév nem helyes!"];
     } else {
         console.log("select count(*) as darab from felhasznalo where nev='"+fn.value+"'");
-        LekerdezesEredmenye(
+        const response = await LekerdezesEredmenye(
             "select count(*) as darab from felhasznalo where nev='"+fn.value+"'"
-        ).then((response)=> {
-            if (response[0].darab!=0) {
-                return [false, " Már regisztráltak ilyen fn-nel!"];
-            }
-        });   
+        );
+        if (response[0].darab !== 0) {
+            return [false, "Már regisztráltak ilyen fn-nel!"];
+        }
     }
-    return [true,""];
+    return [true, ""];
 }
+
 
 async function emailEllenoriz(email) {      
     console.log(email.checkValidity(), email);  
@@ -152,11 +152,7 @@ async function emailEllenoriz(email) {
         
         try {
             const response = await LekerdezesEredmenye("select count(*) as darab from felhasznalo where email='" + email.value + "'");
-            console.log(response);
-            console.log(response[0].darab);
-            console.log(response[0].darab != 0);
             if (response[0].darab != 0) {
-                console.log("bent vagy?");
                 return [false, "Már regisztráltak ilyen emaillel!"];
             }
         } catch (error) {
@@ -167,7 +163,7 @@ async function emailEllenoriz(email) {
     return [true, ""];
 }
 
-function pwEllenoriz(pw,pwre) {
+async function pwEllenoriz(pw,pwre) {
     if (pw.value!=pwre.value) {
         return [false," A két jelszó nem egyezik!"];
     }
@@ -177,37 +173,34 @@ function pwEllenoriz(pw,pwre) {
     return [true,""];
 }
 
-function regisztracio() {
-    const regBtn=document.getElementById("regBtn");
-    const fn=document.getElementById("regfn");
-    const info=document.getElementById("info");
-    const email=document.getElementById("regemail");
-    const pw=document.getElementById("regpw");
-    const pwre=document.getElementById("regpwre");
-    regBtn.disabled=true;
-    info.innerHTML="";
+async function regisztracio() {
+    const regBtn = document.getElementById("regBtn");
+    const fn = document.getElementById("regfn");
+    const info = document.getElementById("info");
+    const email = document.getElementById("regemail");
+    const pw = document.getElementById("regpw");
+    const pwre = document.getElementById("regpwre");
+    regBtn.disabled = true;
+    info.innerHTML = "";
+    let joe = true;
 
-    const fnEll=fnEllenoriz(fn);
-    infoHozzaad(fnEll[1],info,regBtn);
-    let joe=fnEll[0];
+    const pwEll = await pwEllenoriz(pw, pwre);
+    infoHozzaad(pwEll[1], info, regBtn);
+    joe = pwEll[0] && joe;
 
-    const emailEll=emailEllenoriz(email);
-    console.log(emailEll)
-    infoHozzaad(emailEll[1],info,regBtn);
-    joe=emailEll[0]&& joe;
+    const fnEll = await fnEllenoriz(fn);
+    infoHozzaad(fnEll[1], info, regBtn);
+    joe = fnEll[0] && joe;
 
-    const pwEll=pwEllenoriz(pw,pwre);
-    infoHozzaad(pwEll[1],info,regBtn);
-    joe=pwEll[0]&& joe;
+    const emailEll = await emailEllenoriz(email);
+    infoHozzaad(emailEll[1], info, regBtn);
+    joe = emailEll[0] && joe;
 
     if (joe) {
-        hash(pw.value).then((hex) => {
-            LekerdezesEredmenye(
-                "INSERT INTO felhasznalo VALUES (NULL, '"+fn.value+"', '"+hex+"', '"+email.value+"',  '0');"
-            ).then((response)=> {
-                console.log("feltöltve");
-            });  
-        });
+        const hex = await hash(pw.value);
+        const response = await LekerdezesEredmenye(
+            "INSERT INTO felhasznalo VALUES (NULL, '"+fn.value+"', '"+hex+"', '"+email.value+"',  '0');"
+        );
+        console.log("feltöltve");
     }
-
 }
