@@ -1,0 +1,13 @@
+.navbar{
+    background-color: rgb(50,205,50) !important;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.navbar-brand{
+
+    color: aliceblue !important;
+}
+
+body{
+    background-color: rgb(144,238,144);
+}
