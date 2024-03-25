@@ -1,5 +1,11 @@
+:root {
+    --fo: rgb(95, 67, 15);
+    --mellek:rgb(121, 119, 26);
+  }
+
+
 .navbar{
-    background-color: rgb(50,205,50) !important;
+    background-color: var(--fo) !important;
     border-radius: 0px 0px 10px 10px;
 }
 
@@ -9,5 +15,20 @@
 }
 
 body{
-    background-color: rgb(144,238,144);
+    background-color: var(--mellek);
+}
+
+#gombok{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+#gombok button{
+    margin: 10px;
+    background-color: var(--fo);
+    color: white;
+    border-color: var(--mellek);
+    border-radius: 20px;
 }

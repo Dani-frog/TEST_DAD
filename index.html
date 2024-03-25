@@ -10,23 +10,101 @@
     <title>VaktÉrkép5000</title>
 </head>
 <body>
+  <main>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+      <div class="container-fluid">
           <a class="navbar-brand" href="#">VaktÉrkép5000</a>
           
-          </div>
-        </div>
-      </nav>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bejelentkezesmodal">Bejelentkezés</button>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#regisztraciomodal">Regisztráció</button>                 
-             
+      </div>
+    </nav>
+    <div id="gombok">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bejelentkezesmodal">Bejelentkezés</button>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#regisztraciomodal">Regisztráció</button>                 
+    </div>
+  </main>
 
-    
+    <!--Bejelentkezes-->
+    <div class="modal fade" id="bejelentkezesmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Bejelentkezés</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="loginForm">
+                <!-- <p>
+                    <label>Lekérdezés: </label>
+                    <input type="text" id="lekerdezesText">
+                </p>
+                <input type="button" value="LekérdezésEredeménye" id="lekerdezesBtn" onclick="LekerdezesEredmenye()"> -->
+
+                <label for="fn">Felhasználónév: </label>
+                <input type="text" id="fn" placeholder="Felhasználónév"><br>
+                <label for="pw">Jelszó: </label>
+                <input type="password" id="pw" placeholder="Jelszó"><br>
+
+
+            </form>
+            </div>
+            <div class="modal-footer">
+              <input type="button" value="Belépés" onclick="login()">
+            </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="modal fade" id="regisztraciomodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Regisztácó </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="regisztracio">
+              <label for="regfn">Felhasználónév</label>
+              <input type="text" id="regfn"
+                  required pattern="[a-zA-Z0-9._]{3,16}"
+                  placeholder="Add meg a felhasználónevet!"
+                  minlength="3" maxlength="16"> 
+                  <span id="fnInfo"></span><br>
+              <label for="regemail">e-mail cím:</label>
+              <input type="email" id="regemail"
+                  required pattern="[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}"
+                  placeholder="Add meg az email címedet!">
+                  <span id="emailInfo"></span><br>
+
+              <label for="regpw">Jelszó</label>
+              <input type="password" id="regpw"
+                  required pattern="[a-zA-Z0-9._]{8,16}"
+                  placeholder="Jelszó!"
+                  minlength="3" maxlength="16">
+                  <span id="pwInfo"></span><br>
+
+              <label for="regpwre">Jelszó újra</label>
+              <input type="password" id="regpwre"
+                  required pattern="[a-zA-Z0-9._]{8,16}"
+                  placeholder="Jelszó újra!"
+                  minlength="3" maxlength="16"> 
+                  <span id="pwreInfo"></span><br>
+
+              <p id="info">?????</p>
+
+
+          </form>
+          </div>
+          <div class="modal-footer">
+          <input type="button" value="Regisztráció" 
+                    id="regBtn"
+                    onclick="regisztracio()">
+          </div>
+      </div>
+    </div>
+  </div>
 
     <p id="fnShow"></p>
     <script src="script.js"></script>
 </body>
-<body>
-  <p> asd</p>
-</body>
+
 </html>
