@@ -32,3 +32,31 @@ body{
     border-color: var(--mellek);
     border-radius: 20px;
 }
+
+.modal-header{
+    color: white;
+    background-color: var(--fo);
+}
+
+.modal-dialog{
+    color: white;
+}
+
+.modal-body{
+    color: white;
+    background-color: var(--mellek);
+}
+
+.modal-footer{
+    color: white;
+    background-color: var(--mellek);
+}
+
+.btn-close{
+    background-color: white;
+}
+
+.modal-footer input{
+    color: white;
+    background-color: var(--fo);
+}
