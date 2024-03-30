@@ -122,8 +122,7 @@ function erosAJelszo(pw,fn){
     return true;
 }
 function infoHozzaad(uzi, info, regBtn) {
-    info.innerHTML+=uzi;
-    info.innerHTML+=uzi;
+    info.innerHTML+=uzi+"<br>";
     regBtn.disabled=false;    
 }
 
