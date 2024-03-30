@@ -49,7 +49,6 @@ function login() {
             ).then((response)=> {
                 console.log(response)
                 if (response.length==1) {
-                    // document.getElementById("bejelentkezesmodal").hide()
                     let fnS=document.getElementById("fnShow");
                     localStorage.setItem("nev",response[0].nev);
                     localStorage.setItem("admin",response[0].admin);
@@ -124,6 +123,7 @@ function erosAJelszo(pw,fn){
 }
 function infoHozzaad(uzi, info, regBtn) {
     info.innerHTML+=uzi;
+    info.innerHTML+=uzi;
     regBtn.disabled=false;    
 }
 
@@ -176,7 +176,7 @@ async function pwEllenoriz(pw,pwre) {
 async function regisztracio() {
     const regBtn = document.getElementById("regBtn");
     const fn = document.getElementById("regfn");
-    const info = document.getElementById("info");
+    const info = document.getElementById("regInfo");
     const email = document.getElementById("regemail");
     const pw = document.getElementById("regpw");
     const pwre = document.getElementById("regpwre");
@@ -204,3 +204,19 @@ async function regisztracio() {
         console.log("feltöltve");
     }
 }
+
+function marBevanEJelentkezve(){
+    localStorage.clear();
+    if(localStorage.length == 0){
+        document.getElementById("login").style.display = "block";
+    }
+    else if(localStorage.admin == 1){
+        document.getElementById("admin").style.display = "block";
+
+    }
+    else{
+        document.getElementById("normal").style.display = "block";
+
+    }
+}
+marBevanEJelentkezve();

@@ -60,3 +60,18 @@ body{
     color: white;
     background-color: var(--fo);
 }
+
+#loginForm{
+    display: flex;
+    flex-direction: column;
+}
+
+#loginForm{
+    display: flex;
+    flex-direction: column;
+}
+
+#regisztracio{
+    display: flex;
+    flex-direction: column;
+}
