@@ -80,7 +80,7 @@ body{
     flex-wrap: nowrap;
   }
 #terkepdiv{
-    width: 60%;
+    
     border: solid var(--fo) 0.5vw;
     border-radius: 10%;
 
@@ -89,4 +89,7 @@ body{
     width: 40%;
     border: solid var(--fo) 0.5vw;
     border-radius: 10%;
+}
+#baloldaldiv{
+    width: 60%;
 }
