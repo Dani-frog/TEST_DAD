@@ -52,11 +52,7 @@ function login() {
                     let fnS=document.getElementById("fnShow");
                     localStorage.setItem("nev",response[0].nev);
                     localStorage.setItem("admin",response[0].admin);
-                    // location.reload();
-                    fnS.innerHTML="Felhasznló: "+localStorage.getItem("nev");
-                    if (response[0].jog==1) {
-                        fnS.innerHTML+=" (admin)";
-                    }
+                    location.reload();
                     
                 } else {
                     console.log("Több vagy kevesebb, mint egy 1 értékkel tért vissza!");
@@ -140,7 +136,10 @@ async function fnEllenoriz(fn) {
     }
     return [true, ""];
 }
-
+function logout(){
+    localStorage.clear();
+    location.reload();
+}
 
 async function emailEllenoriz(email) {      
     console.log(email.checkValidity(), email);  
@@ -205,7 +204,7 @@ async function regisztracio() {
 }
 
 function marBevanEJelentkezve(){
-    localStorage.clear();
+    // localStorage.clear();
     if(localStorage.length == 0){
         document.getElementById("login").style.display = "block";
     }
