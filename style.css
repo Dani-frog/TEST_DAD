@@ -75,3 +75,10 @@ body{
     display: flex;
     flex-direction: column;
 }
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+#terkepdiv{
+    
+}
