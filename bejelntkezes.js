@@ -23,7 +23,7 @@ const AdatbazisEleres = ()=>{
 
 AdatbazisEleres();
 
-
+var bejelentkezve = false;
 
 async function hash(string) {
     const utf8 = new TextEncoder().encode(string);
@@ -207,13 +207,17 @@ function marBevanEJelentkezve(){
     // localStorage.clear();
     if(localStorage.length == 0){
         document.getElementById("login").style.display = "block";
+        bejelentkezve = false;
+        
     }
     else if(localStorage.admin == 1){
         document.getElementById("admin").style.display = "block";
+        bejelentkezve = true;
 
     }
     else{
         document.getElementById("normal").style.display = "block";
+        bejelentkezve = true;
 
     }
 }

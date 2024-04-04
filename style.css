@@ -86,10 +86,18 @@ body{
 
 }
 #kerdesdiv{
-    width: 40%;
+    width: max-content;
     border: solid var(--fo) 0.5vw;
-    border-radius: 10%;
+    border-radius: 15px;
+    box-shadow: 3px 3px 3px black;
+    margin: 5px;
 }
 #baloldaldiv{
-    width: 60%;
+}
+
+#terkep{
+    border: solid var(--fo) 0.5vw;
+    border-radius: 15px;
+    box-shadow: 3px 3px 3px black;
+    margin: 5px;
 }
