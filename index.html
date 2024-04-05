@@ -11,7 +11,6 @@
     <title>VaktÉrkép5000</title>
 </head>
 <body>
-  
   <div id="login" style="display: none;">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -19,9 +18,9 @@
           
       </div>
     </nav>
-    <div id="gombok">
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bejelentkezesmodal">Bejelentkezés</button>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#regisztraciomodal">Regisztráció</button>                 
+    <div class="gombok">
+      <button type="button" class="btn btn-primary basicGomb" data-bs-toggle="modal" data-bs-target="#bejelentkezesmodal">Bejelentkezés</button>
+      <button type="button" class="btn btn-primary basicGomb" data-bs-toggle="modal" data-bs-target="#regisztraciomodal">Regisztráció</button>                 
     </div>
   </div>
 
@@ -47,14 +46,22 @@
           <input type="button" value="X" style="color: red; background-color: transparent; border: none; margin-left: auto; margin-right: 0;" onclick="logout()">
         </div>
       <div class="flex-container">
-        <div id="baloldaldiv"">
+        <div id="baloldaldiv" class="col-8">
           <canvas id="terkep">
         
           </canvas>
           <div>háj skór</div>
         </div>
         
-        <div id="kerdesdiv">mi fáj?</div>
+        <div id="kerdesdiv" class="col-4">
+          <h2>Állítsd be a nehézséget</h2>
+
+          <div class="gombok">
+            <input type="button" class="basicGomb" value="Könnyű" >
+            <input type="button" class="basicGomb" value="Közepes">
+            <input type="button" class="basicGomb"value="Nehéz">
+          </div>
+        </div>
       </div>
     </div>
 

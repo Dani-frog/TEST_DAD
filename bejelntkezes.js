@@ -33,7 +33,7 @@ async function hash(string) {
       .map((bytes) => bytes.toString(16).padStart(2, '0'))
       .join('');
     return hashHex;
-  }
+}
 
 function login() {
     const fn=document.getElementById("fn").value;

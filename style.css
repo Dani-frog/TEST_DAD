@@ -18,14 +18,18 @@ body{
     background-color: var(--mellek);
 }
 
-#gombok{
+h2{
+    padding: 10px;
+}
+
+.gombok{
     margin-top: 100px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
 }
-#gombok button{
+.basicGomb{
     margin: 10px;
     background-color: var(--fo);
     color: white;
@@ -92,9 +96,10 @@ body{
     box-shadow: 3px 3px 3px black;
     margin: 5px;
 }
-#baloldaldiv{
+#nehezsegGombok{
+    display: flex;
+    margin: 10px;
 }
-
 #terkep{
     border: solid var(--fo) 0.5vw;
     border-radius: 15px;
