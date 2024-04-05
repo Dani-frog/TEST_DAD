@@ -51,6 +51,7 @@ function login() {
                 if (response.length==1) {
                     let fnS=document.getElementById("fnShow");
                     localStorage.setItem("nev",response[0].nev);
+                    console.log(response)
                     localStorage.setItem("admin",response[0].admin);
                     location.reload();
                     

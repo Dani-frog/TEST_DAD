@@ -10,7 +10,6 @@
 }
 
 .navbar-brand{
-
     color: aliceblue !important;
 }
 
@@ -22,6 +21,12 @@ h2{
     padding: 10px;
 }
 
+
+table td{
+    padding-right: 75px;
+    border-bottom: 2px solid black;
+    color: white;
+}
 .gombok{
     margin-top: 100px;
     display: flex;
@@ -84,10 +89,8 @@ h2{
     flex-wrap: nowrap;
   }
 #terkepdiv{
-    
     border: solid var(--fo) 0.5vw;
     border-radius: 10%;
-
 }
 #kerdesdiv{
     width: max-content;
