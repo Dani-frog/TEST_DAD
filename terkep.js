@@ -19,3 +19,11 @@ terkepKep.onload = function(){
     console.log("asd")
     tortaRajz(terkepKep,ctxTerkep,terkep,800,500);
 }
+
+// Event listener for mouse click on canvas
+terkep.addEventListener('click', function(event) {
+    const rect = terkep.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    console.log("Mouse clicked at (x:", x, ", y:", y, ")");
+});
