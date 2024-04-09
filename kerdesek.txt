@@ -1,13 +1,13 @@
-Hol halt meg II. Lajos 1526-ban? ; konnyu ; Mohács
-Hol kötöttek békét 1711-ben a Rákoczi felkelők? ; konnyu ; Szatmárnémeti
-Hol történt csata 907-ben a pogány magyarok és az európai keresztények között? ; konnyu ; Pozsony 
-Melyik híres várunkat foglalta el az Oszmán birodalom 1541-ben csellel? ; konnyu ; Buda
-Hol találkozott 3 király 1335-ben? ; konnyu ; Visegrad
-Hol csatázott 1241-ben IV. Béla király a mongolokkal ; konnyu ; Muhi
-Hol történt egyik leghíresebb várostromunk 1552-ben, amely magyar győzelemmel zárult? ; kozepes ; Eger
-Vár, melynek ostroma közben halt meg I. Szulejmán szultán? ; kozepes; Szigetvár
-Hol tűnt el Petőfi Sándor? ; nehez ; Segesvár
-Melyik város volt az Erdélyi fejedelmség fővárosa 1570 és 1692 között? ; nehez ; Gyulafehérvár
-Az Osztrák-Magyar-Monarchia részeként melyik volt magyarország legjelentősebb kikötővárosa? ; nehez ; Fiume
-Hova építettet egyetemet I. Nagy Lajos király 1367-ben? ; nehez ; Pécs 	
-Hol tartotta fogva Mátyás király Drakula grófot? ; nehez ; Visegrad
+Hol halt meg II. Lajos 1526-ban? ; konnyu ; Mohács ; 295 ; 335
+Hol kötöttek békét 1711-ben a Rákoczi felkelők? ; konnyu ; Szatmárnémeti ; 577 ; 176
+Hol történt csata 907-ben a pogány magyarok és az európai keresztények között? ; konnyu ; Pozsony ; 205; 138
+Melyik híres várunkat foglalta el az Oszmán birodalom 1541-ben csellel? ; konnyu ; Buda; 325 ; 188
+Hol találkozott 3 király 1335-ben? ; konnyu ; Visegrad ; 316 ; 172
+Hol csatázott 1241-ben IV. Béla király a mongolokkal ; konnyu ; Muhi ; 427 ; 150
+Hol történt egyik leghíresebb várostromunk 1552-ben, amely magyar győzelemmel zárult? ; kozepes ; Eger ; 110 ; 160 
+Vár, melynek ostroma közben halt meg I. Szulejmán szultán? ; kozepes; Szigetvár ; 230 ; 320
+Hol tűnt el Petőfi Sándor? ; nehez ; Segesvár ; 725 ; 340
+Melyik város volt az Erdélyi fejedelmség fővárosa 1570 és 1692 között? ; nehez ; Gyulafehérvár ; 645 ; 348
+Az Osztrák-Magyar-Monarchia részeként melyik volt magyarország legjelentősebb kikötővárosa? ; nehez ; Fiume ; 10 ; 376 
+Hova építettet egyetemet I. Nagy Lajos király 1367-ben? ; nehez ; Pécs ; 257 ; 326
+Hol tartotta fogva Mátyás király Drakula grófot? ; nehez ; Visegrad ; 316 ; 172

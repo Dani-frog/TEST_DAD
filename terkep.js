@@ -4,6 +4,7 @@ const ctxTerkep = terkep.getContext("2d");
 const terkepKep = document.createElement("img");
 terkep.height = 500;
 terkep.width = 800;
+var nehezseg;
 terkepKep.src="Kepek/highqualitybighungary.jpg";
 
 function tortaRajz(img,ctx,canvas,szel,mag) {
