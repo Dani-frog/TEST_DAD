@@ -28,3 +28,22 @@ terkep.addEventListener('click', function(event) {
     const y = event.clientY - rect.top;
     console.log("Mouse clicked at (x:", x, ", y:", y, ")");
 });
+
+function nehezseg(btn) {
+    const gombok =document.getElementsByClassName("gombok")
+    for (let index = 0; index < gombok.length; index++) {
+        gombok[index].innerHTML = "";
+        
+    }
+    if (btn.value == "Könnyű") {
+        console.log(btn.value);
+    }
+    
+    else if (btn.value == "Közepes") {
+        console.log(btn.value);
+    }
+    else if (btn.value == "Nehéz") {
+        console.log(btn.value);
+    }
+    else{console.log("NEMJÓ");}
+}
