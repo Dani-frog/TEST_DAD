@@ -200,7 +200,10 @@ async function regisztracio() {
         const response = await LekerdezesEredmenye(
             "INSERT INTO felhasznalo VALUES (NULL, '"+fn.value+"', '"+hex+"', '"+email.value+"',  '0');"
         );
+        localStorage.nev = fn.value;
+        localStorage.admin = 0;
         console.log("feltöltve");
+        location.reload();
     }
 }
 
