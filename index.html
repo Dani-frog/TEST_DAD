@@ -29,39 +29,29 @@
     <div id = "headerszeruseg">
       <input type="button" value="X" style="color: red; background-color: transparent; border: none; margin-left: auto; margin-right: 0;" onclick="logout()">
     </div>
-  <div class="flex-container">
-    <div id="baloldaldiv" class="col-8">
-      <canvas id="terkep">
-      </canvas>
-      <div>
+    <div class="flex-container">
+      <div id="baloldaldiv" class="col-8">
+        <canvas id="terkep">
+        </canvas>
+        <div>
+        </div>
       </div>
+      
+      <div id="kerdesdiv" class="col-4">
+        <h2>Adj meg egy új kérdést</h2>
+        <p id="kordinata">Nyomj a térképre hogy megtud adni a város kordinátáit</p>
+        <input type="text" name="kerdes" placeholder="Add meg a kérdés szövegét">
+        <input type="button" value="Kérdés hozzáadása">
+        <div id="radiok">
+          <input type="radio" name="nehezseg" value="Könnyű">
+          <label for="Könnyű">Könnyű</label><br>
+          <input type="radio" name="nehezseg" value="Közepes">
+          <label for="Közepes">Közepes</label><br>
+          <input type="radio" name="nehezseg" value="Nehéz">
+          <label for="Nehéz">Nehéz</label>
+        <div>
     </div>
-    
-    <div id="kerdesdiv" class="col-4">
-      <h2>Adj meg egy új kérdést</h2>
-      <p id="kordinata">Nyomj a térképre hogy megtud adni a város kordinátáit</p>
-      <input type="text" name="kerdes" placeholder="Add meg a kérdés szövegét">
-      <input type="button" value="Kérdés hozzáadása">
-      <div id="radiok">
-        <input type="radio" name="nehezseg" value="Könnyű">
-        <label for="Könnyű">Könnyű</label><br>
-        <input type="radio" name="nehezseg" value="Közepes">
-        <label for="Közepes">Közepes</label><br>
-        <input type="radio" name="nehezseg" value="Nehéz">
-        <label for="Nehéz">Nehéz</label>
-      <div>
-  </div>
-    
-    <div id="kerdesdiv" class="col-4">
-      <h2>Állítsd be a nehézséget</h2>
-
-      <div class="gombok">
-        <input type="button" class="basicGomb" value="Könnyű" onclick="nehezseg(this)">
-        <input type="button" class="basicGomb" value="Közepes" onclick="nehezseg(this)">
-        <input type="button" class="basicGomb"value="Nehéz" onclick="nehezseg(this)">
-      </div>
-    </div>
-  </div>
+  
   </div>
 
 
