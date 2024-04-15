@@ -26,17 +26,30 @@
 
   <div id="admin" style="display: none;">
     <h1>Admin mód</h1>
-      <div id = "headerszeruseg">
-        <input type="button" value="X" style="color: red; background-color: transparent; border: none; margin-left: auto; margin-right: 0;" onclick="logout()">
-      </div>
-    <div class="flex-container">
-      <div id="baloldaldiv">
-        <div id="terkepdiv">TRIANOOOOOOOOOOOOOON</div>
-        <div>háj skór</div>
-      </div>
-      
-      <div id="kerdesdiv">mi fáj?</div>
+    <div id = "headerszeruseg">
+      <input type="button" value="X" style="color: red; background-color: transparent; border: none; margin-left: auto; margin-right: 0;" onclick="logout()">
     </div>
+  <div class="flex-container">
+    <div id="baloldaldiv" class="col-8">
+      <canvas id="terkep">
+      </canvas>
+      <div>
+      </div>
+    </div>
+    
+    <div id="kerdesdiv" class="col-4">
+      <h2>Adj meg egy új kérdést</h2>
+      <p id="kordinata">Nyomj a térképre hogy megtud adni a város kordinátáit</p>
+      <input type="text" name="kerdes" placeholder="Add meg a kérdés szövegét">
+      <input type="button" value="Kérdés hozzáadása">
+      <div id="radiok">
+        <input type="radio" name="nehezseg" value="Könnyű">
+        <label for="Könnyű">Könnyű</label><br>
+        <input type="radio" name="nehezseg" value="Közepes">
+        <label for="Közepes">Közepes</label><br>
+        <input type="radio" name="nehezseg" value="Nehéz">
+        <label for="Nehéz">Nehéz</label>
+      <div>
   </div>
 
 
