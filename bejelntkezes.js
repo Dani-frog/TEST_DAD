@@ -119,8 +119,10 @@ function erosAJelszo(pw,fn){
     return true;
 }
 function infoHozzaad(uzi, info, regBtn) {
-    info.innerHTML+=uzi+"<br>";
-    regBtn.disabled=false;    
+    if (uzi!="") {
+        info.innerHTML+="<p>"+uzi+"</p>";
+        regBtn.disabled=false;  
+    }
 }
 
 async function fnEllenoriz(fn) {
