@@ -235,23 +235,3 @@ function marBevanEJelentkezve(){
     }
 }
 marBevanEJelentkezve();
-
-function kerdesfeltolt() {
-    const kerdes = document.getElementById("kerdesbox").value;
-    var kordinata = document.getElementById("kordinata");
-    kordinata=String(kordinata.value).match('/\D+/g');//ennek a számokkal kéne returnölni eddig annyit tud ez a function h kiírja a nehézséget meg a "koordinátákat" ami most null.
-    console.log(kordinata);
-    const selectedOption = document.querySelector('input[name="nehezseg"]:checked')
-    if (selectedOption) {
-        const nszint = selectedOption.value;
-        
-        console.log("Kiválasztott nehézség:", nszint);
-      } else {
-        console.log("Nincs nehézség kiválasztva");
-        //const query = "insert into terkep VALUES(NULL, '"+kerdes+"','"+nszint+"','""')"
-      }
-
-    //INSERT INTO table_name (column1, column2, column3, ...)
-    //VALUES (value1, value2, value3, ...);
-    
-}
