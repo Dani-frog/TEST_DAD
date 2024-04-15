@@ -7,18 +7,20 @@ terkep.width = 800;
 var nehezseg;
 terkepKep.src="Kepek/highqualitybighungary.jpg";
 
-function tortaRajz(img,ctx,canvas,szel,mag) {
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
-
-    const imageX = (canvasWidth - szel)/2; // Center X
-    const imageY = (canvasHeight - mag)/2; // Center Y
-    ctx.drawImage(img, imageX, imageY,szel,mag);
+function terkepRajz(img,ctx,canvas,szel,mag) {
+    if (bejelentkezve == true) {
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+    
+        const imageX = (canvasWidth - szel)/2; // Center X
+        const imageY = (canvasHeight - mag)/2; // Center Y
+        ctx.drawImage(img, imageX, imageY,szel,mag);
+    }
 }
 
 terkepKep.onload = function(){
     console.log("asd")
-    tortaRajz(terkepKep,ctxTerkep,terkep,800,500);
+    terkepRajz(terkepKep,ctxTerkep,terkep,800,500);
 }
 
 // Event listener for mouse click on canvas
