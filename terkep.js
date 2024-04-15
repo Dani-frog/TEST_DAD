@@ -22,16 +22,16 @@ terkepKep.onload = function(){
 }
 
 // Event listener for mouse click on canvas
-terkep.addEventListener('click', function(event) {
-    const rect = terkep.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    console.log("Mouse clicked at (x:", x, ", y:", y, ")");
-    var kordinataDiv = document.getElementById("kordinata");
-    if (kordinataDiv) {
-        kordinataDiv.innerHTML = "Mouse clicked at (x:"+ x+ ", y:"+ y+ ")";
-    }
-});
+// terkep.addEventListener('click', function(event) {
+//     const rect = terkep.getBoundingClientRect();
+//     const x = event.clientX - rect.left;
+//     const y = event.clientY - rect.top;
+//     console.log("Mouse clicked at (x:", x, ", y:", y, ")");
+//     var kordinataDiv = document.getElementById("kordinata");
+//     if (kordinataDiv) {
+//         kordinataDiv.innerHTML = "Mouse clicked at (x:"+ x+ ", y:"+ y+ ")";
+//     }
+// });
 
 function nehezseg(btn) {
     const gombok =document.getElementsByClassName("gombok")

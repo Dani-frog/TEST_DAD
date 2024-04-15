@@ -213,16 +213,23 @@ function marBevanEJelentkezve(){
     // localStorage.clear();
     if(localStorage.length == 0){
         document.getElementById("login").style.display = "block";
+        document.getElementById("admin").innerHTML = "";
+        document.getElementById("normal").innerHTML = "";
+
         bejelentkezve = false;
         
     }
     else if(localStorage.admin == 1){
         document.getElementById("admin").style.display = "block";
+        document.getElementById("normal").innerHTML = "";
+        document.getElementById("login").innerHTML = "";
         bejelentkezve = true;
 
     }
     else{
         document.getElementById("normal").style.display = "block";
+        document.getElementById("login").innerHTML = "";
+        document.getElementById("admin").innerHTML = "";
         bejelentkezve = true;
 
     }
