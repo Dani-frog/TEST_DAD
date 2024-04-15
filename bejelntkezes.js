@@ -94,30 +94,30 @@ const LekerdezesEredmenye = (lekerdezes) => {
         }
     });
 }
-function erosAJelszo(pw,fn){
-
+function erosAJelszo(pw, fn) {
     const kisbetu = /[a-z]/
     const nagybetu = /[A-Z]/
     const szam = /[0-9]/
-    const speci = /\.\_/
-    if (kisbetu.test(pw)
-        && nagybetu.test(pw)
-        && szam.test(pw)
-        && speci.test(pw) 
-        && !pw.includes(fn)) {
+    const speci = /[^a-zA-Z0-9]/ // Matches any special character
+    if (!(kisbetu.test(pw) && nagybetu.test(pw) && szam.test(pw) && speci.test(pw) && !pw.includes(fn))) {
         console.log("nem jó")
         return false;
     }
 
-    for (let i = 0; i < pw.length-2; i++) {
-        if (pw[i].charCodeAt()+1 == pw[i +1].charCodeAt()&&
-            pw[i+1].charCodeAt()+1 == pw[i +2].charCodeAt()) {
+    for (let i = 0; i < pw.length - 2; i++) {
+        if (pw.charCodeAt(i) + 1 === pw.charCodeAt(i + 1) && pw.charCodeAt(i + 1) + 1 === pw.charCodeAt(i + 2)) {
+            console.log("nem jó")
             return false;
         }
     }
 
+    console.log("jó")
     return true;
 }
+
+// Test
+erosAJelszo("Abc123.", "John"); // Output: true
+
 function infoHozzaad(uzi, info, regBtn) {
     if (uzi!="") {
         info.innerHTML+="<p>"+uzi+"</p>";
