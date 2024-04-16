@@ -37,50 +37,67 @@ terkep.addEventListener('click', function(event) {
 
 var kerdesektomb = [
     {
-      id: 1,
+      id: "konnyu",
       name: 'Könnyű kérdés'
     },
     {
-      id: 2,
+        id: "konnyu",
+        name: 'Könnyű kérdés2'
+      },
+      {
+        id: "konnyu",
+        name: 'Könnyű kérdés3'
+      },
+      {
+        id: "konnyu",
+        name: 'Könnyű kérdés4'
+      },
+    {
+      id: "kozepes",
       name: 'Közepes kérdés'
     },
     {
-      id: 3,
+      id: "nehez",
       name: 'Nehéz kérdés'
     }
   ]
+
+//
+//SHUFFLE
+//
+
+
 
 function nehezseg(btn) {
     const gombok =document.getElementsByClassName("gombok")
     for (let index = 0; index < gombok.length; index++) {
         gombok[index].innerHTML = "";
         
-    }/*
+    }
     if (btn.value == "Könnyű") {
         console.log(btn.value);
-        const object = kerdesektomb.find(obj => obj.id == 1);
-        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = object; }
+        var mondatkerdes = kerdesektomb.find(obj => obj.id == "konnyu");
+        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.name ; }
     }
     
     else if (btn.value == "Közepes") {
         console.log(btn.value);
-        const object = kerdesektomb.find(obj => obj.id == 2);
-        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = object; }
+        var mondatkerdes  = kerdesektomb.find(obj => obj.id == "kozepes");
+        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.name ; }
     }
     else if (btn.value == "Nehéz") {
         console.log(btn.value);
-        const object = kerdesektomb.find(obj => obj.id == 3);
-        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = object; }
+        var mondatkerdes  = kerdesektomb.find(obj => obj.id == "nehez");
+        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.name; }
     }
-    else{console.log("NEMJÓ");}*/
-    const selectedQuestion = kerdesektomb.find(obj => obj.name === btn.value);
+    else{console.log("NEMJÓ");}/*    const selectedQuestion = kerdesektomb.find(obj => obj.name === btn.value);
     if (selectedQuestion) {
         for (let index = 0; index < gombok.length; index++) {
             gombok[index].innerHTML = selectedQuestion.name;
         }
     } else {
         console.log("Nem található kérdés ehhez a nehézséghez!");
-    }
+    }*/
 } 
 
 function kerdesfeltolt() {
