@@ -35,24 +35,53 @@ terkep.addEventListener('click', function(event) {
     }
 });
 
+var kerdesektomb = [
+    {
+      id: 1,
+      name: 'Könnyű kérdés'
+    },
+    {
+      id: 2,
+      name: 'Közepes kérdés'
+    },
+    {
+      id: 3,
+      name: 'Nehéz kérdés'
+    }
+  ]
+
 function nehezseg(btn) {
     const gombok =document.getElementsByClassName("gombok")
     for (let index = 0; index < gombok.length; index++) {
         gombok[index].innerHTML = "";
         
-    }
+    }/*
     if (btn.value == "Könnyű") {
         console.log(btn.value);
+        const object = kerdesektomb.find(obj => obj.id == 1);
+        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = object; }
     }
     
     else if (btn.value == "Közepes") {
         console.log(btn.value);
+        const object = kerdesektomb.find(obj => obj.id == 2);
+        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = object; }
     }
     else if (btn.value == "Nehéz") {
         console.log(btn.value);
+        const object = kerdesektomb.find(obj => obj.id == 3);
+        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = object; }
     }
-    else{console.log("NEMJÓ");}
-}
+    else{console.log("NEMJÓ");}*/
+    const selectedQuestion = kerdesektomb.find(obj => obj.name === btn.value);
+    if (selectedQuestion) {
+        for (let index = 0; index < gombok.length; index++) {
+            gombok[index].innerHTML = selectedQuestion.name;
+        }
+    } else {
+        console.log("Nem található kérdés ehhez a nehézséghez!");
+    }
+} 
 
 function kerdesfeltolt() {
     const kerdes = document.getElementById("kerdesbox").value;
