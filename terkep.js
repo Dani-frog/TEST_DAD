@@ -53,3 +53,38 @@ function nehezseg(btn) {
     }
     else{console.log("NEMJÓ");}
 }
+
+function kerdesfeltolt() {
+    const kerdes = document.getElementById("kerdesbox").value;
+    var kordinata = document.getElementById("kordinata");
+
+    const line = kordinata.innerText
+    const regex = /(?:\(x:)(\d+\.*\d*)(?:, y:)(\d+\.*\d*)(?:\))/;
+    console.log(line);
+
+    const match = line.match(regex);
+
+    if (match) {
+        const x = parseFloat(match[1]);
+        const y = parseFloat(match[2]);
+        koordinata = match[1]+";"+match[2];
+        console.log(koordinata)
+        console.log("x:", x);
+        console.log("y:", y);
+    } else {
+        alert("Nincs megadva koordináta!");
+    }
+    const selectedOption = document.querySelector('input[name="nehezseg"]:checked')
+    let nszint;
+    if (selectedOption) {
+        nszint = selectedOption.value;
+
+        console.log("Kiválasztott nehézség:", nszint);
+      } else {
+        console.log("Nincs nehézség kiválasztva");
+    }
+    const query = "insert into terkep VALUES(NULL, '"+kerdes+"','"+nszint+"','"+koordinata+"')"
+    console.log(query)
+    const response = LekerdezesEredmenye(query);
+    console.log(response)
+}
