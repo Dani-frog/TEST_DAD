@@ -122,15 +122,27 @@ function kerdesfeltolt() {
     }
     const selectedOption = document.querySelector('input[name="nehezseg"]:checked')
     let nszint;
-    if (selectedOption) {
+    if (selectedOption && kordinata.length>0 && kerdes.value>0) {
         nszint = selectedOption.value;
 
         console.log("Kiválasztott nehézség:", nszint);
       } else {
-        console.log("Nincs nehézség kiválasztva");
+        console.log("Nincs nehézség kiválasztva, vagy koordináta vagy kérdés beírva!");
+        alert("Nem minden pont teljesült be! (Koordináta választás,)");
+        return
     }
     const query = "insert into terkep VALUES(NULL, '"+kerdes+"','"+nszint+"','"+koordinata+"')"
     console.log(query)
     const response = LekerdezesEredmenye(query);
     console.log(response)
+    alert("Kérdés sikeresen feltöltve!");
 }
+
+function AdminFeltolt(nev) {
+    const adminnev = document.getElementById("admintextbox");
+    const query = "update felhasznalo set admin=1 where nev = '"+adminnev.value+"'"
+    const response = LekerdezesEredmenye(query);
+    console.log(query);
+    console.log(response);
+    alert("Ember sikeresen Adminná téve!");
+} 
