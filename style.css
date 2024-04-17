@@ -118,4 +118,16 @@ table td{
     justify-content: space-evenly;
     flex-direction: column;
     align-items: stretch;
+    
 }
+
+#Admintoroldiv{
+    position: absolute;
+    bottom: 0px;
+    align-self: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: stretch;
+}
+

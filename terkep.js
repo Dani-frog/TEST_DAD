@@ -122,7 +122,11 @@ function kerdesfeltolt() {
     }
     const selectedOption = document.querySelector('input[name="nehezseg"]:checked')
     let nszint;
-    if (selectedOption && kordinata.length>0 && kerdes.value>0) {
+    console.log(selectedOption!=null);
+    console.log(koordinata.length>0);
+    console.log(kerdes.length>0);
+    if (selectedOption!=null && koordinata.length>0 && kerdes.length>0) {
+        
         nszint = selectedOption.value;
 
         console.log("Kiválasztott nehézség:", nszint);
@@ -145,4 +149,13 @@ function AdminFeltolt(nev) {
     console.log(query);
     console.log(response);
     alert("Ember sikeresen Adminná téve!");
+} 
+
+function AdminKitorol(nev) {
+    const adminnev = document.getElementById("admintoroltextbox");
+    const query = "update felhasznalo set admin=0 where nev = '"+adminnev.value+"'"
+    const response = LekerdezesEredmenye(query);
+    console.log(query);
+    console.log(response);
+    alert("Admin sikeresen levonva");
 } 
