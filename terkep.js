@@ -122,7 +122,7 @@ function kerdesfeltolt() {
     }
     const selectedOption = document.querySelector('input[name="nehezseg"]:checked')
     let nszint;
-    if (selectedOption && kordinata.length>0 && kerdes.value>0) {
+    if (selectedOption && kordinata.length>0 && kerdes.length>0) {
         nszint = selectedOption.value;
 
         console.log("Kiválasztott nehézség:", nszint);
@@ -140,27 +140,29 @@ function kerdesfeltolt() {
 
 function AdminFeltolt(nev) {
     const adminnev = document.getElementById("admintextbox");
-    rangja = LekerdezesEredmenye("select f.admin from felhasznalo f where f.nev = '"+adminnev.value+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
+    const rangja = LekerdezesEredmenye("select f.admin from felhasznalo f where f.nev = '"+adminnev.value+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
+    rangja.then((segglyuk)=> {
+                console.log(adminnev.value);
+                console.log("ezaz: "+localStorage.nev);
+                if(adminnev.value == localStorage.nev){
+                    alert("hiba! Önmagad nem tudod admintalanítani!!!44!!");
+                }
+                else if(segglyuk[0].admin == 0){
+                    const query = "update felhasznalo set admin=1 where nev = '"+adminnev.value+"'"
+                    const response = LekerdezesEredmenye(query);
+                    console.log(query);
+                    console.log(response);
+                    alert("Ember sikeresen Adminná téve!");
+                }
+                else if(segglyuk[0].admin == 1){
+                    const query = "update felhasznalo set admin=0 where nev = '"+adminnev.value+"'"
+                    const response = LekerdezesEredmenye(query);
+                    console.log(query);
+                    console.log(response);
+                    alert("Ember sikeresen admintalanítva!");
+                }
+            });
 
-    console.log(adminnev.value);
-    console.log(rangja.value);
     
-    if(adminnev.value == localStorage.name){
-        alert("hiba! Önmagad nem tudod admintalanítani!!!44!!");
-    }
-    else if(rangja == 0){
-        const query = "update felhasznalo set admin=1 where nev = '"+adminnev.value+"'"
-        const response = LekerdezesEredmenye(query);
-        console.log(query);
-        console.log(response);
-        alert("Ember sikeresen Adminná téve!");
-    }
-    else if(rangja == 1){
-        const query = "update felhasznalo set admin=0 where nev = '"+adminnev.value+"'"
-        const response = LekerdezesEredmenye(query);
-        console.log(query);
-        console.log(response);
-        alert("Ember sikeresen admintalanítva!");
-    }
     
 } 
