@@ -59,32 +59,24 @@ terkep.addEventListener('click', function(event) {
     buttonendisable(kordvan,textvan,nehezsegvan);
 });
 
-var kerdesektomb = [
-    {
-      id: "konnyu",
-      name: 'Könnyű kérdés'
-    },
-    {
-        id: "konnyu",
-        name: 'Könnyű kérdés2'
-      },
-      {
-        id: "konnyu",
-        name: 'Könnyű kérdés3'
-      },
-      {
-        id: "konnyu",
-        name: 'Könnyű kérdés4'
-      },
-    {
-      id: "kozepes",
-      name: 'Közepes kérdés'
-    },
-    {
-      id: "nehez",
-      name: 'Nehéz kérdés'
+async function kerdesektombfeltolt() {
+    try {
+        const query = "SELECT * FROM terkep;"; // Query to select all rows from the table
+        console.log(query);
+        
+        // Execute the SQL query and await the result
+        const tablahossz = await LekerdezesEredmenye(query);
+
+        
+        // Assuming the result is an array of objects, assign it to kerdesektomb
+        kerdesektomb = tablahossz;
+
+        console.log(kerdesektomb);
+    } catch (error) {
+        console.error('Error fetching data:', error);
     }
-  ]
+}
+var kerdesektomb = [];// FONTOS ÜZENET: itt kigyűjti a sorokat tömbbe, hogy kitudjuk iratni a kérdéseket!!!!!
 
 //
 //SHUFFLE
@@ -103,7 +95,10 @@ function nehezsegchanged() {
         buttonendisable(kordvan,textvan,nehezsegvan);
 }
 
-function nehezseg(btn) {
+async function nehezseg(btn) {
+    
+    await kerdesektombfeltolt();
+    console.log("itt vok");
     const gombok =document.getElementsByClassName("gombok")
     for (let index = 0; index < gombok.length; index++) {
         gombok[index].innerHTML = "";
@@ -111,20 +106,20 @@ function nehezseg(btn) {
     }
     if (btn.value == "Könnyű") {
         console.log(btn.value);
-        var mondatkerdes = kerdesektomb.find(obj => obj.id == "konnyu");
-        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.name ; }
+        var mondatkerdes = kerdesektomb.find(obj => obj.nehezseg == "Könnyű");
+        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.kerdes ; }
         
     }
     
     else if (btn.value == "Közepes") {
         console.log(btn.value);
-        var mondatkerdes  = kerdesektomb.find(obj => obj.id == "kozepes");
-        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.name ; }
+        var mondatkerdes  = kerdesektomb.find(obj => obj.nehezseg == "Közepes");
+        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.kerdes ; }
     }
     else if (btn.value == "Nehéz") {
         console.log(btn.value);
-        var mondatkerdes  = kerdesektomb.find(obj => obj.id == "nehez");
-        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.name; }
+        var mondatkerdes  = kerdesektomb.find(obj => obj.nehezseg == "Nehéz");
+        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.kerdes; }
     }
     else{console.log("NEMJÓ");}/*    const selectedQuestion = kerdesektomb.find(obj => obj.name === btn.value);
     if (selectedQuestion) {
@@ -180,8 +175,9 @@ function kerdesfeltolt() {
     const query = "insert into terkep VALUES(NULL, '"+kerdes+"','"+nszint+"','"+koordinata+"')"
     console.log(query)
     const response = LekerdezesEredmenye(query);
-    console.log(response)
-    alert("Kérdés sikeresen feltöltve!");
+    console.log(response);
+    //alert("Kérdés sikeresen feltöltve!");
+    console.log("Kérdés sikeresen feltöltve!");
 }
 
 function AdminFeltolt() {
