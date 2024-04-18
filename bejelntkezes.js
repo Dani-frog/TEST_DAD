@@ -214,7 +214,6 @@ async function regisztracio() {
 }
 
 function marBevanEJelentkezve(){
-    // localStorage.clear();
     if(localStorage.length == 0){
         document.getElementById("login").style.display = "block";
         document.getElementById("admin").innerHTML = "";
@@ -243,6 +242,41 @@ marBevanEJelentkezve();
 
 
 async function adatokModositaGombClick(){
+    const fn = document.getElementById("regfnmod");
+    const info = document.getElementById("regInfomod");
+    const email = document.getElementById("regemailmod");
+    info.innerHTML = "";
+
+    const id = LekerdezesEredmenye("SELECT * FROM `felhasznalo` WHERE nev = '"+localStorage.nev+"'");
+    id.then((segglyuk)=> {
+        fn.value = segglyuk[0].nev;
+        email.value = segglyuk[0].email;
+    });
+}
+
+
+async function fnEllDeLehetUgyanAz(fn) {
+    if (!fn.checkValidity()) {
+        return [false, "A felhasználónév nem helyes!"];
+    }
+    return [true, ""];
+}
+
+async function emailEllDeLehetUgyanAz(email) {      
+    console.log(email.checkValidity(), email);  
+    if (!email.checkValidity()) {
+        return [false, "Az emailcím nem helyes!"];
+    }
+    return [true, ""];
+}
+
+
+
+async function adatokModositasa(){
+
+    const id = await LekerdezesEredmenye("SELECT * FROM `felhasznalo` WHERE nev = '"+localStorage.nev+"'");
+
+
     const regBtn = document.getElementById("regBtnmod");
     const fn = document.getElementById("regfnmod");
     const info = document.getElementById("regInfomod");
@@ -253,26 +287,27 @@ async function adatokModositaGombClick(){
     info.innerHTML = "";
     let joe = true;
 
+
+
     const pwEll = await pwEllenoriz(pw, pwre);
     infoHozzaad(pwEll[1], info, regBtn);
     joe = pwEll[0] && joe;
 
-    const fnEll = await fnEllenoriz(fn);
+    const fnEll = await fnEllDeLehetUgyanAz(fn);
     infoHozzaad(fnEll[1], info, regBtn);
     joe = fnEll[0] && joe;
 
-    const emailEll = await emailEllenoriz(email);
+    const emailEll = await emailEllDeLehetUgyanAz(email);
     infoHozzaad(emailEll[1], info, regBtn);
     joe = emailEll[0] && joe;
 
     if (joe) {
         const hex = await hash(pw.value);
-        const response = await LekerdezesEredmenye(
-            "INSERT INTO felhasznalo VALUES (NULL, '"+fn.value+"', '"+hex+"', '"+email.value+"',  '0');"
-        );
+        let query = "update felhasznalo set nev = '"+fn.value+"', jelszo = '"+hex +"',  email = '"+email.value+"'   where id = "+id[0].id+";"
+        console.log(query)
+        const response = await LekerdezesEredmenye(query);
         localStorage.nev = fn.value;
-        localStorage.admin = 0;
         console.log("feltöltve");
-        location.reload();
     }
 }
+
