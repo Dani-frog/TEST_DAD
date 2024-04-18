@@ -111,8 +111,18 @@ table td{
 }
 
 #Admindiv{
+    /*
     position: absolute;
-    bottom: 0px;
+    bottom: 0px;*/
+    align-self: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: stretch;
+}
+#Deletediv{/*
+    position: absolute;
+    bottom: 0px;*/
     align-self: center;
     display: flex;
     justify-content: space-evenly;
