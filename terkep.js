@@ -30,14 +30,26 @@ terkepKep.onload = function(){
 
 // Event listener for mouse click on canvas
 terkep.addEventListener('click', function(event) {
-    let pin = document.createElement("img");
-    pin.src="pin.png";
-    document.getElementById("terkep").innerHTML = pin;
+
+    terkepRajz(terkepKep,ctxTerkep,terkep,800,500);
 
 
     const rect = terkep.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
+
+
+    let pin = document.createElement("img");
+    pin.src="pin.png";
+    pin.onload = function(){
+        ctxTerkep.shadowColor = "black";
+        ctxTerkep.shadowBlur = 15;
+        ctxTerkep.drawImage(pin, x-15, y-30, 25,25);
+        keprekurziv(i+1,limit);
+    }
+
+
+
     console.log("Mouse clicked at (x:", x, ", y:", y, ")");
     var kordinataDiv = document.getElementById("kordinata");
     if (kordinataDiv) {
