@@ -30,6 +30,11 @@ terkepKep.onload = function(){
 
 // Event listener for mouse click on canvas
 terkep.addEventListener('click', function(event) {
+    let pin = document.createElement("img");
+    pin.src="pin.png";
+    document.getElementById("terkep").innerHTML = pin;
+
+
     const rect = terkep.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
