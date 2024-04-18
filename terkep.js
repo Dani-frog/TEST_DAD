@@ -2,6 +2,8 @@ console.log(bejelentkezve)
 const terkep = document.getElementById("terkep");
 const ctxTerkep = terkep.getContext("2d");
 const terkepKep = document.createElement("img");
+const bekuldgomb = document.getElementById("kerdesbutton");
+bekuldgomb.disabled=true; 
 terkep.height = 500;
 terkep.width = 800;
 var nehezseg;
@@ -109,6 +111,7 @@ function kerdesfeltolt() {
     console.log(line);
 
     const match = line.match(regex);
+    console.log(match);
 
     if (match) {
         const x = parseFloat(match[1]);
@@ -118,25 +121,26 @@ function kerdesfeltolt() {
         console.log("x:", x);
         console.log("y:", y);
     } else {
-        alert("Nincs megadva koordináta!");
+        //alert("Nincs megadva koordináta!");
+        console.log("Nincs megadva koordináta!");
+        
     }
     const selectedOption = document.querySelector('input[name="nehezseg"]:checked')
     let nszint;
-<<<<<<< HEAD
+
     console.log(selectedOption!=null);
     console.log(koordinata.length>0);
     console.log(kerdes.length>0);
-    if (selectedOption!=null && koordinata.length>0 && kerdes.length>0) {
+    //if (selectedOption!=null && koordinata.length>0 && kerdes.length>0) {
         
-=======
-    if (selectedOption && kordinata.length>0 && kerdes.length>0) {
->>>>>>> 0f17c32c21ef2608d578e1f63695180005dce23f
+    if (selectedOption!=null && koordinata.length>0 && kerdes.length>0) {
         nszint = selectedOption.value;
-
+        bekuldgomb.disabled = false;
         console.log("Kiválasztott nehézség:", nszint);
       } else {
+          bekuldgomb.disabled = true;
         console.log("Nincs nehézség kiválasztva, vagy koordináta vagy kérdés beírva!");
-        alert("Nem minden pont teljesült be! (Koordináta választás,)");
+        //alert("Nem minden pont teljesült be! (Koordináta választás,)");
         return
     }
     const query = "insert into terkep VALUES(NULL, '"+kerdes+"','"+nszint+"','"+koordinata+"')"
@@ -170,7 +174,5 @@ function AdminFeltolt(nev) {
                     alert("Ember sikeresen admintalanítva!");
                 }
             });
-
-    
-    
 } 
+

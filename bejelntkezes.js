@@ -2,17 +2,19 @@ const AdatbazisEleres = ()=>{
     fetch("http://127.0.0.1:3000")
     .then(function (response) {
         if (!response.ok) {
-            alert("Nem jó válasz érekezett az adatbázisból");
+            //alert("Nem jó válasz érekezett az adatbázisból");
+            console.log("Nem jó válasz érekezett az adatbázisból");
             return Promise.reject("Nem jó válasz érekezett az adatbázisból");
         }
         return response.json();
     })
     .then(function (response) {
         if (response.Error) {
-                alert(response.Error);
+                //alert(response.Error);
                 console.log(response.Error);
         } else {
-            alert("Az adatbázis kapcsolat él, az adatokat eléri.");
+            //alert("Az adatbázis kapcsolat él, az adatokat eléri."); 
+            console.log("Az adatbázis kapcsolat él, az adatokat eléri.");
             console.log("Táblák");
             response.forEach(element => {
                 console.log(element);
@@ -56,13 +58,17 @@ function login() {
                     location.reload();
                     
                 } else {
+                    const uzenet = document.getElementById("loginhibauzenet");
+                    uzenet.innerHTML = "Hibás karaktereket tartalmaz a felhasználónév vagy a jelszó!";
                     console.log("Több vagy kevesebb, mint egy 1 értékkel tért vissza!");
                 }
             });
     
         }); 
     } else {
-        console.log("Hibás karaktereket tartalmaz a felhasználónév vagy a jelszó!")
+        const uzenet = document.getElementById("loginhibauzenet");
+        uzenet.innerHTML = "Hibás karaktereket tartalmaz a felhasználónév vagy a jelszó!";
+        console.log("Hibás a felhasználónév vagy a jelszó!")
     }
 
 
