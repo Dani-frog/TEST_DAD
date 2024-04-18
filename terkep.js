@@ -3,6 +3,9 @@ const terkep = document.getElementById("terkep");
 const ctxTerkep = terkep.getContext("2d");
 const terkepKep = document.createElement("img");
 const bekuldgomb = document.getElementById("kerdesbutton");
+var kordvan = false;
+var textvan = false;
+var nehezsegvan = false;
 bekuldgomb.disabled=true; 
 terkep.height = 500;
 terkep.width = 800;
@@ -35,6 +38,8 @@ terkep.addEventListener('click', function(event) {
     if (kordinataDiv) {
         kordinataDiv.innerHTML = "Mouse clicked at (x:"+ x+ ", y:"+ y+ ")";
     }
+    kordvan = true;
+    buttonendisable(kordvan,textvan,nehezsegvan);
 });
 
 var kerdesektomb = [
@@ -68,7 +73,18 @@ var kerdesektomb = [
 //SHUFFLE
 //
 
+function textchanged() {
+    
+    if (document.getElementById("kerdesbox").value.length>0) {
+        textvan = true;
+        buttonendisable(kordvan,textvan,nehezsegvan);
+    }
+}
 
+function nehezsegchanged() {
+    nehezsegvan = true;
+        buttonendisable(kordvan,textvan,nehezsegvan);
+}
 
 function nehezseg(btn) {
     const gombok =document.getElementsByClassName("gombok")
@@ -80,6 +96,7 @@ function nehezseg(btn) {
         console.log(btn.value);
         var mondatkerdes = kerdesektomb.find(obj => obj.id == "konnyu");
         for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.name ; }
+        
     }
     
     else if (btn.value == "Közepes") {
@@ -179,6 +196,15 @@ function Emberkitorol(){
     const deletenev = document.getElementById("deletetextbox");
     const pusztulj = LekerdezesEredmenye("delete from felhasznalo where nev='"+deletenev.value+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
     pusztulj.then((segglyuk)=> {
-                alert("megvanfőnők");
+                //alert("megvanfőnők");
+                console.log("felhasználó kitörölve!");
             });
+}
+
+function buttonendisable(kordvan, textvan, nehezsegvan) {
+    if (kordvan && textvan && nehezsegvan) {
+        bekuldgomb.disabled=false; 
+    }
+    else
+        bekuldgomb.disabled=true; 
 }

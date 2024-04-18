@@ -40,14 +40,14 @@
       <div id="kerdesdiv" class="col-4">
         <h2>Adj meg egy új kérdést</h2>
         <p id="kordinata">Nyomj a térképre hogy megtud adni a város kordinátáit</p>
-        <input type="text" id="kerdesbox" id="kerdesbox" name="kerdes" placeholder="Add meg a kérdés szövegét">
+        <input type="text" id="kerdesbox" name="kerdes" placeholder="Add meg a kérdés szövegét" onchange="textchanged()" onkeypress = "this.onchange();" onpaste = "this.onchange();"oninput = "this.onchange();">
         <input type="button" id="kerdesbutton" value="Kérdés hozzáadása" onclick="kerdesfeltolt()" onclick="kerdesfeltolt()">
           <div id="radiok">
-            <input type="radio" id="Konnyu" name="nehezseg" value="Könnyű">
+            <input type="radio" id="Konnyu" name="nehezseg" value="Könnyű" onchange="nehezsegchanged()">
             <label for="Könnyű">Könnyű</label><br>
-            <input type="radio" id="Kozepes" name="nehezseg" value="Közepes">
+            <input type="radio" id="Kozepes" name="nehezseg" value="Közepes" onchange="nehezsegchanged()">
             <label for="Közepes">Közepes</label><br>
-            <input type="radio" id="Nehez" name="nehezseg" value="Nehéz">
+            <input type="radio" id="Nehez" name="nehezseg" value="Nehéz" onchange="nehezsegchanged()">
             <label for="Nehéz">Nehéz</label>
           </div>
       </div>

@@ -70,8 +70,6 @@ function login() {
         uzenet.innerHTML = "Hibás karaktereket tartalmaz a felhasználónév vagy a jelszó!";
         console.log("Hibás a felhasználónév vagy a jelszó!")
     }
-
-
 }
 
 
