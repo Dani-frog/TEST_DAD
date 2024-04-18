@@ -138,7 +138,7 @@ function kerdesfeltolt() {
     alert("Kérdés sikeresen feltöltve!");
 }
 
-function AdminFeltolt(nev) {
+function AdminFeltolt() {
     const adminnev = document.getElementById("admintextbox");
     const rangja = LekerdezesEredmenye("select f.admin from felhasznalo f where f.nev = '"+adminnev.value+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
     rangja.then((segglyuk)=> {
@@ -162,7 +162,11 @@ function AdminFeltolt(nev) {
                     alert("Ember sikeresen admintalanítva!");
                 }
             });
-
-    
-    
 } 
+function Emberkitorol(){
+    const deletenev = document.getElementById("deletetextbox");
+    const pusztulj = LekerdezesEredmenye("delete from felhasznalo where nev='"+deletenev.value+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
+    pusztulj.then((segglyuk)=> {
+                alert("megvanfőnők");
+            });
+}
