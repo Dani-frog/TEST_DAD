@@ -239,3 +239,40 @@ function marBevanEJelentkezve(){
     }
 }
 marBevanEJelentkezve();
+
+
+
+async function adatokModositaGombClick(){
+    const regBtn = document.getElementById("regBtnmod");
+    const fn = document.getElementById("regfnmod");
+    const info = document.getElementById("regInfomod");
+    const email = document.getElementById("regemailmod");
+    const pw = document.getElementById("regpwmod");
+    const pwre = document.getElementById("regpwremod");
+    regBtn.disabled = true;
+    info.innerHTML = "";
+    let joe = true;
+
+    const pwEll = await pwEllenoriz(pw, pwre);
+    infoHozzaad(pwEll[1], info, regBtn);
+    joe = pwEll[0] && joe;
+
+    const fnEll = await fnEllenoriz(fn);
+    infoHozzaad(fnEll[1], info, regBtn);
+    joe = fnEll[0] && joe;
+
+    const emailEll = await emailEllenoriz(email);
+    infoHozzaad(emailEll[1], info, regBtn);
+    joe = emailEll[0] && joe;
+
+    if (joe) {
+        const hex = await hash(pw.value);
+        const response = await LekerdezesEredmenye(
+            "INSERT INTO felhasznalo VALUES (NULL, '"+fn.value+"', '"+hex+"', '"+email.value+"',  '0');"
+        );
+        localStorage.nev = fn.value;
+        localStorage.admin = 0;
+        console.log("feltöltve");
+        location.reload();
+    }
+}

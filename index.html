@@ -75,6 +75,7 @@
   <div id="normal" style="display: none;">
       <h1>Normal mód</h1>
         <div id = "headerszeruseg">
+          <button type="button" class="btn btn-primary basicGomb" data-bs-toggle="modal" data-bs-target="#adatokModositasa" onclick="adatokModositaGombClick()">Adatok modosítása</button>                 
           <input type="button" value="X" style="color: red; background-color: transparent; border: none; margin-left: auto; margin-right: 0;" onclick="logout()">
         </div>
       <div class="flex-container">
@@ -112,7 +113,54 @@
       </div>
     </div>
 
+    <!-- adatok modositasa -->
+    <div class="modal fade" id="adatokModositasa" tabindex="-1" aria-labelledby="adatokModositasaLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="adatokModositasaLabel">Adatok módosítása</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <label for="regfnmod">Felhasználónév: </label>
+              <input type="text" id="regfnmod"
+                  required pattern="[a-zA-Z0-9._]{3,16}"
+                  placeholder="Add meg a felhasználónevet!"
+                  minlength="3" maxlength="16"> 
+                  <span id="fnInfomod"></span><br>
+
+              <label for="regemailmod">E-mail cím:</label>
+              <input type="email" id="regemailmod"
+                  required pattern="[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}"
+                  placeholder="Add meg az email címedet!">
+                  <span id="emailInfomod"></span><br>
+
+              <label for="regpwmod">Jelszó: </label>
+              <input type="password" id="regpwmod"
+                  required pattern="[a-zA-Z0-9._]{8,16}"
+                  placeholder="Jelszó!"
+                  minlength="3" maxlength="16">
+                  <span id="pwInfomod"></span><br>
+
+              <label for="regpwremod">Jelszó újra: </label>
+              <input type="password" id="regpwremod"
+                  required pattern="[a-zA-Z0-9._]{8,16}"
+                  placeholder="Jelszó újra!"
+                  minlength="3" maxlength="16"> 
+                  <span id="pwreInfomod"></span><br>
+
+              <p id="regInfomod"></p>
+          </div>
+          <div class="modal-footer">
+            <input type="button" value="Módosítás megerősitése" onclick="login()">
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!--Bejelentkezes-->
+    
     <div class="modal fade" id="bejelentkezesmodal" tabindex="-1" aria-labelledby="bejModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">

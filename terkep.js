@@ -6,7 +6,9 @@ const bekuldgomb = document.getElementById("kerdesbutton");
 var kordvan = false;
 var textvan = false;
 var nehezsegvan = false;
-bekuldgomb.disabled=true; 
+if (bekuldgomb) {
+    bekuldgomb.disabled=true; 
+}
 terkep.height = 500;
 terkep.width = 800;
 var nehezseg;
