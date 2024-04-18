@@ -180,6 +180,7 @@ function kerdesfeltolt() {
     console.log(response);
     //alert("Kérdés sikeresen feltöltve!");
     console.log("Kérdés sikeresen feltöltve!");
+    location.reload();
 }
 
 function AdminFeltolt() {
@@ -215,6 +216,36 @@ function Emberkitorol(){
                 console.log("felhasználó kitörölve!");
             });
 }
+
+async function kerdeseklista() {
+    await kerdesektombfeltolt();
+    var select = document.getElementById("kerdeseklista");
+    // Clear existing options
+    select.innerHTML = '';
+    
+    // Populate options from the array
+    await kerdesektomb.forEach(function(sor) {
+        var option = document.createElement("option");
+        option.text = sor.kerdes;
+        select.add(option);
+
+    });
+}
+window.onload = function() {
+    kerdeseklista();
+};
+
+
+async function kerdestorles() {
+    var select = document.getElementById("kerdeseklista");
+    console.log("anyuci");
+    const query = "delete FROM terkep where kerdes ='"+select.options[select.selectedIndex].text+"';"; // sortörlésxd select az gyak egy listbox a selec.options[]stb az self explanatory.
+        console.log(query);
+        const tablahossz = await LekerdezesEredmenye(query);
+        
+    kerdeseklista();
+}
+
 
 function buttonendisable(kordvan, textvan, nehezsegvan) {
     if (kordvan && textvan && nehezsegvan) {
