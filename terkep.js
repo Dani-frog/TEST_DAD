@@ -144,18 +144,27 @@ function kerdesfeltolt() {
 
 function AdminFeltolt(nev) {
     const adminnev = document.getElementById("admintextbox");
-    const query = "update felhasznalo set admin=1 where nev = '"+adminnev.value+"'"
-    const response = LekerdezesEredmenye(query);
-    console.log(query);
-    console.log(response);
-    alert("Ember sikeresen Adminná téve!");
-} 
+    rangja = LekerdezesEredmenye("select f.admin from felhasznalo f where f.nev = '"+adminnev.value+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
 
-function AdminKitorol(nev) {
-    const adminnev = document.getElementById("admintoroltextbox");
-    const query = "update felhasznalo set admin=0 where nev = '"+adminnev.value+"'"
-    const response = LekerdezesEredmenye(query);
-    console.log(query);
-    console.log(response);
-    alert("Admin sikeresen levonva");
+    console.log(adminnev.value);
+    console.log(rangja.value);
+    
+    if(adminnev.value == localStorage.name){
+        alert("hiba! Önmagad nem tudod admintalanítani!!!44!!");
+    }
+    else if(rangja == 0){
+        const query = "update felhasznalo set admin=1 where nev = '"+adminnev.value+"'"
+        const response = LekerdezesEredmenye(query);
+        console.log(query);
+        console.log(response);
+        alert("Ember sikeresen Adminná téve!");
+    }
+    else if(rangja == 1){
+        const query = "update felhasznalo set admin=0 where nev = '"+adminnev.value+"'"
+        const response = LekerdezesEredmenye(query);
+        console.log(query);
+        console.log(response);
+        alert("Ember sikeresen admintalanítva!");
+    }
+    
 } 
