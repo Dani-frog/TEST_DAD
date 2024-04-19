@@ -61,17 +61,35 @@ terkep.addEventListener('click', function(event) {
     buttonendisable(kordvan,textvan,nehezsegvan);
 });
 
+async function felhtombfeltolt() {
+    try {
+        const query = "SELECT nev FROM felhasznalo;"; // Query to select all rows from the table
+        console.log(query);
+        
+        // Execute the SQL query and await the result
+        const response = await LekerdezesEredmenye(query);
+
+        
+        // Assuming the result is an array of objects, assign it to kerdesektomb
+        felhtomb = response;
+
+        console.log(kerdesektomb);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
 async function kerdesektombfeltolt() {
     try {
         const query = "SELECT * FROM terkep;"; // Query to select all rows from the table
         console.log(query);
         
         // Execute the SQL query and await the result
-        const tablahossz = await LekerdezesEredmenye(query);
+        const response = await LekerdezesEredmenye(query);
 
         
         // Assuming the result is an array of objects, assign it to kerdesektomb
-        kerdesektomb = tablahossz;
+        kerdesektomb = response;
 
         console.log(kerdesektomb);
     } catch (error) {
@@ -184,7 +202,8 @@ function kerdesfeltolt() {
 }
 
 function AdminFeltolt() {
-    const adminnev = document.getElementById("admintextbox");
+    const felhlista = document.getElementById("felhlista");
+    const adminnev = felhlista.options[felhlista.selectedIndex].text;
     const rangja = LekerdezesEredmenye("select f.admin from felhasznalo f where f.nev = '"+adminnev.value+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
     rangja.then((segglyuk)=> {
                 console.log(adminnev.value);
@@ -207,6 +226,9 @@ function AdminFeltolt() {
                     alert("Ember sikeresen admintalanítva!");
                 }
             });
+
+
+
 } 
 function Emberkitorol(){
     const deletenev = document.getElementById("deletetextbox");
@@ -233,8 +255,25 @@ async function kerdeseklista() {
 }
 window.onload = function() {
     kerdeseklista();
+    felhasznaloklista();
 };
 
+var felhtomb = [];
+
+async function felhasznaloklista() {
+    await felhtombfeltolt();
+    var select = document.getElementById("felhlista");
+    // Clear existing options
+    select.innerHTML = '';
+    
+    // Populate options from the array
+    await felhtomb.forEach(function(sor) {
+        var option = document.createElement("option");
+        option.text = sor.nev;
+        select.add(option);
+
+    });
+}
 
 async function kerdestorles() {
     var select = document.getElementById("kerdeseklista");
@@ -253,4 +292,8 @@ function buttonendisable(kordvan, textvan, nehezsegvan) {
     }
     else
         bekuldgomb.disabled=true; 
+}
+
+function felhmodosit(params) {
+    
 }
