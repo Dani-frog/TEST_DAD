@@ -193,18 +193,16 @@ async function regisztracio() {
     infoHozzaad(pwEll[1], info, regBtn);
     joe = pwEll[0] && joe;
 
-    if (fn.value != localStorage.nev) {
-        const fnEll = await fnEllenoriz(fn);
-        infoHozzaad(fnEll[1], info, regBtn);
-        joe = fnEll[0] && joe;
-    }
+    
+    const fnEll = await fnEllDeLehetUgyanAz(fn);
+    infoHozzaad(fnEll[1], info, regBtn);
+    joe = fnEll[0] && joe;
+
+    const emailEll = await emailEllDeLehetUgyanAz(email);
+    infoHozzaad(emailEll[1], info, regBtn);
+    joe = emailEll[0] && joe;
 
 
-    if (id[0].email != email.value) {
-        const emailEll = await emailEllenoriz(email);
-        infoHozzaad(emailEll[1], info, regBtn);
-        joe = emailEll[0] && joe;w
-    }
 
     if (joe) {
         const hex = await hash(pw.value);
@@ -260,20 +258,6 @@ async function adatokModositaGombClick(){
 }
 
 
-async function fnEllDeLehetUgyanAz(fn) {
-    if (!fn.checkValidity()) {
-        return [false, "A felhasználónév nem helyes!"];
-    }
-    return [true, ""];
-}
-
-async function emailEllDeLehetUgyanAz(email) {      
-    console.log(email.checkValidity(), email);  
-    if (!email.checkValidity()) {
-        return [false, "Az emailcím nem helyes!"];
-    }
-    return [true, ""];
-}
 
 
 
@@ -298,13 +282,20 @@ async function adatokModositasa(){
     infoHozzaad(pwEll[1], info, regBtn);
     joe = pwEll[0] && joe;
 
-    const fnEll = await fnEllDeLehetUgyanAz(fn);
-    infoHozzaad(fnEll[1], info, regBtn);
-    joe = fnEll[0] && joe;
 
-    const emailEll = await emailEllDeLehetUgyanAz(email);
-    infoHozzaad(emailEll[1], info, regBtn);
-    joe = emailEll[0] && joe;
+    
+    if (fn.value != localStorage.nev) {
+        const fnEll = await fnEllenoriz(fn);
+        infoHozzaad(fnEll[1], info, regBtn);
+        joe = fnEll[0] && joe;
+    }
+
+
+    if (id[0].email != email.value) {
+        const emailEll = await emailEllenoriz(email);
+        infoHozzaad(emailEll[1], info, regBtn);
+        joe = emailEll[0] && joe;w
+    }
 
     if (joe) {
         const hex = await hash(pw.value);
