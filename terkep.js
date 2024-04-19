@@ -204,22 +204,26 @@ function kerdesfeltolt() {
 function AdminFeltolt() {
     const felhlista = document.getElementById("felhlista");
     const adminnev = felhlista.options[felhlista.selectedIndex].text;
-    const rangja = LekerdezesEredmenye("select f.admin from felhasznalo f where f.nev = '"+adminnev.value+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
+    const rangja = LekerdezesEredmenye("select f.admin from felhasznalo f where f.nev = '"+adminnev+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
     rangja.then((segglyuk)=> {
                 console.log(adminnev.value);
                 console.log("ezaz: "+localStorage.nev);
+                console.log(segglyuk[0]);
+
                 if(adminnev.value == localStorage.nev){
                     alert("hiba! Önmagad nem tudod admintalanítani!!!44!!");
                 }
+                
                 else if(segglyuk[0].admin == 0){
-                    const query = "update felhasznalo set admin=1 where nev = '"+adminnev.value+"'"
+
+                    const query = "update felhasznalo set admin=1 where nev = '"+adminnev+"'"
                     const response = LekerdezesEredmenye(query);
                     console.log(query);
                     console.log(response);
                     alert("Ember sikeresen Adminná téve!");
                 }
                 else if(segglyuk[0].admin == 1){
-                    const query = "update felhasznalo set admin=0 where nev = '"+adminnev.value+"'"
+                    const query = "update felhasznalo set admin=0 where nev = '"+adminnev+"'"
                     const response = LekerdezesEredmenye(query);
                     console.log(query);
                     console.log(response);
