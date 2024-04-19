@@ -193,13 +193,18 @@ async function regisztracio() {
     infoHozzaad(pwEll[1], info, regBtn);
     joe = pwEll[0] && joe;
 
-    const fnEll = await fnEllenoriz(fn);
-    infoHozzaad(fnEll[1], info, regBtn);
-    joe = fnEll[0] && joe;
+    if (fn.value != localStorage.nev) {
+        const fnEll = await fnEllenoriz(fn);
+        infoHozzaad(fnEll[1], info, regBtn);
+        joe = fnEll[0] && joe;
+    }
 
-    const emailEll = await emailEllenoriz(email);
-    infoHozzaad(emailEll[1], info, regBtn);
-    joe = emailEll[0] && joe;
+
+    if (id[0].email != email.value) {
+        const emailEll = await emailEllenoriz(email);
+        infoHozzaad(emailEll[1], info, regBtn);
+        joe = emailEll[0] && joe;w
+    }
 
     if (joe) {
         const hex = await hash(pw.value);
