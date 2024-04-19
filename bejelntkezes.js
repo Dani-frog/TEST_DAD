@@ -194,11 +194,11 @@ async function regisztracio() {
     joe = pwEll[0] && joe;
 
     
-    const fnEll = await fnEllDeLehetUgyanAz(fn);
+    const fnEll = await fnEllenoriz(fn);
     infoHozzaad(fnEll[1], info, regBtn);
     joe = fnEll[0] && joe;
 
-    const emailEll = await emailEllDeLehetUgyanAz(email);
+    const emailEll = await emailEllenoriz(email);
     infoHozzaad(emailEll[1], info, regBtn);
     joe = emailEll[0] && joe;
 
