@@ -100,6 +100,7 @@ table td{
     box-shadow: 3px 3px 3px black;
     margin: 5px;
     background-color: var(--belter);
+    padding: 1vw;
 }
 #logoutbtn{
     width: max-content;

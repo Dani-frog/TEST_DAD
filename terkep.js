@@ -55,7 +55,7 @@ terkep.addEventListener('click', function(event) {
     console.log("Mouse clicked at (x:", x, ", y:", y, ")");
     var kordinataDiv = document.getElementById("kordinata");
     if (kordinataDiv) {
-        kordinataDiv.innerHTML = "Mouse clicked at (x:"+ x+ ", y:"+ y+ ")";
+        kordinataDiv.innerHTML = "A kiválasztott helyszín koordinátája (x:"+ x+ ", y:"+ y+ ")";
     }
     kordvan = true;
     buttonendisable(kordvan,textvan,nehezsegvan);
@@ -244,6 +244,7 @@ function Emberkitorol(){
                 //alert("megvanfőnők");
                 console.log("felhasználó kitörölve!");
             });
+    felhasznaloklista();
 }
 
 async function kerdeseklista() {
