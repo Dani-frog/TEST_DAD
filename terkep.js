@@ -95,12 +95,11 @@ async function kerdesektombfeltolt() {
     } catch (error) {
         console.error('Error fetching data:', error);
     }
+    /*const shuffle = (array) => { 
+        return array.sort(() => Math.random() - 0.5);}
+        kerdesektomb = shuffle(kerdesektomb);*/
 }
 var kerdesektomb = [];// FONTOS ÜZENET: itt kigyűjti a sorokat tömbbe, hogy kitudjuk iratni a kérdéseket!!!!!
-
-//
-//SHUFFLE
-//
 
 function textchanged() {
     
@@ -126,7 +125,7 @@ async function nehezseg(btn) {
     if (btn.value == "Könnyű") {
         console.log(btn.value);
         var mondatkerdes = kerdesektomb.find(obj => obj.nehezseg == "Könnyű");
-        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.kerdes ; }
+        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.kerdes ,gombok[index].className="Kerdesjelen"; }
         
     }
     
