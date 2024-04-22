@@ -1,6 +1,7 @@
 :root {
     --fo: rgb(95, 67, 15);
     --mellek:rgb(121, 119, 26);
+    --belter: rgb(202, 172, 82);
   }
 
 
@@ -98,6 +99,16 @@ table td{
     border-radius: 15px;
     box-shadow: 3px 3px 3px black;
     margin: 5px;
+    background-color: var(--belter);
+}
+#logoutbtn{
+    width: max-content;
+    border: solid var(--fo) 0.5vw;
+    border-radius: 15px;
+    box-shadow: 3px 3px 3px black;
+    margin: 5px;
+    background-color: var(--fo);
+    color: white;
 }
 #nehezsegGombok{
     display: flex;
