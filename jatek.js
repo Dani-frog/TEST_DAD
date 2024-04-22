@@ -16,46 +16,11 @@ async function nehezseg(btn) {
     for (let index = 0; index < gombok.length; index++) {
         gombok[index].innerHTML = "";
     }
-    if (btn.value == "Könnyű") {
-        console.log(btn.value);
-        var mondatkerdes = kerdesektomb.find(obj => obj.nehezseg == "Könnyű");
-        for (let index = 0; index < gombok.length; index++) 
-        {
-            gombok[index].innerHTML = mondatkerdes.kerdes; 
-            gombok[index].id = "kerdesjelen"; 
-        }
-    }
-    
-    else if (btn.value == "Közepes") {
-        console.log(btn.value);
-        var mondatkerdes  = kerdesektomb.find(obj => obj.nehezseg == "Közepes");
-        for (let index = 0; index < gombok.length; index++)
-        {
-            gombok[index].innerHTML = mondatkerdes.kerdes;
-            gombok[index].id = "kerdesjelen"; 
-        }
-    }
-    else if (btn.value == "Nehéz") {
-        console.log(btn.value);
-        var mondatkerdes  = kerdesektomb.find(obj => obj.nehezseg == "Nehéz");
-        for (let index = 0; index < gombok.length; index++) 
-        { 
-            gombok[index].innerHTML = mondatkerdes.kerdes; 
-            gombok[index].id = "kerdesjelen"; 
-        }
-    }
-    else{
-        console.log("NEMJÓ");
-    }
-    let gomb = document.createElement("input")
-    gomb.type = "button";
-    gomb.value = "Tovább"
-    gomb.id ="tovabbgomb"
-    document.getElementsByClassName("gombok")[0].appendChild(gomb);
 
     joKerdesek  = kerdesektomb.filter(obj => obj.nehezseg == btn.value);
 
     kerdesDiv = document.createElement("div");
+    kerdesDiv.id = "kerdesjelen";
     gombok[0].appendChild(kerdesDiv);
 
     kerdesKiiras();
@@ -63,6 +28,7 @@ async function nehezseg(btn) {
     let gomb = document.createElement("input")
     gomb.type = "button";
     gomb.value = "Tovább";
+    gomb.id = "tovabbgomb"
     gomb.setAttribute("onclick","pontozas()")
 
     gombok[0].appendChild(gomb);
