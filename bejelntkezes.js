@@ -1,3 +1,4 @@
+console.log(localStorage)
 const AdatbazisEleres = ()=>{
     fetch("http://127.0.0.1:3000")
     .then(function (response) {

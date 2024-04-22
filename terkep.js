@@ -1,3 +1,4 @@
+console.log(localStorage);
 console.log(bejelentkezve)
 const terkep = document.getElementById("terkep");
 const ctxTerkep = terkep.getContext("2d");
@@ -47,7 +48,6 @@ terkep.addEventListener('click', function(event) {
         ctxTerkep.shadowColor = "black";
         ctxTerkep.shadowBlur = 15;
         ctxTerkep.drawImage(pin, x-15, y-30, 25,25);
-        keprekurziv(i+1,limit);
     }
 
 
@@ -122,7 +122,6 @@ async function nehezseg(btn) {
     const gombok =document.getElementsByClassName("gombok")
     for (let index = 0; index < gombok.length; index++) {
         gombok[index].innerHTML = "";
-        
     }
     if (btn.value == "Könnyű") {
         console.log(btn.value);
@@ -141,14 +140,10 @@ async function nehezseg(btn) {
         var mondatkerdes  = kerdesektomb.find(obj => obj.nehezseg == "Nehéz");
         for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.kerdes; }
     }
-    else{console.log("NEMJÓ");}/*    const selectedQuestion = kerdesektomb.find(obj => obj.name === btn.value);
-    if (selectedQuestion) {
-        for (let index = 0; index < gombok.length; index++) {
-            gombok[index].innerHTML = selectedQuestion.name;
-        }
-    } else {
-        console.log("Nem található kérdés ehhez a nehézséghez!");
-    }*/
+    else{
+        console.log("NEMJÓ");
+    }
+
 } 
 
 function kerdesfeltolt() {
@@ -260,10 +255,8 @@ async function kerdeseklista() {
 
     });
 }
-window.onload = function() {
-    kerdeseklista();
-    felhasznaloklista();
-};
+
+
 
 var felhtomb = [];
 
@@ -286,8 +279,8 @@ async function kerdestorles() {
     var select = document.getElementById("kerdeseklista");
     console.log("anyuci");
     const query = "delete FROM terkep where kerdes ='"+select.options[select.selectedIndex].text+"';"; // sortörlésxd select az gyak egy listbox a selec.options[]stb az self explanatory.
-        console.log(query);
-        const tablahossz = await LekerdezesEredmenye(query);
+    console.log(query);
+    const tablahossz = await LekerdezesEredmenye(query);
         
     kerdeseklista();
 }
@@ -301,6 +294,7 @@ function buttonendisable(kordvan, textvan, nehezsegvan) {
         bekuldgomb.disabled=true; 
 }
 
-function felhmodosit(params) {
-    
+if (localStorage.admin == 1) {
+    kerdeseklista();
+    felhasznaloklista();
 }
