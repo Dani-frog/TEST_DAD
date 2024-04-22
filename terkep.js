@@ -235,8 +235,11 @@ function AdminFeltolt() {
 
 } 
 function Emberkitorol(){
-    const deletenev = document.getElementById("deletetextbox");
-    const pusztulj = LekerdezesEredmenye("delete from felhasznalo where nev='"+deletenev.value+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
+
+    const felhlista = document.getElementById("felhlista");
+    const deletenev = felhlista.options[felhlista.selectedIndex].text;
+
+    const pusztulj = LekerdezesEredmenye("delete from felhasznalo where nev='"+deletenev+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
     pusztulj.then((segglyuk)=> {
                 //alert("megvanfőnők");
                 console.log("felhasználó kitörölve!");
