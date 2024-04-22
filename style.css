@@ -152,8 +152,32 @@ table td{
     align-items: stretch;
 }
 
-.Kerdesjelen{
-    width: fit-content;
-    margin: 3%;
-    border: ;
+#kerdesjelen{
+    border: solid var(--fo) 0.5vw;
+    border-radius: 15px;
+    box-shadow: 3px 3px 3px black;
+    margin: 5px;
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 20vw; /* Can be in percentage also. */
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    word-break: break-all;
+}
+
+#kerdeseklista{
+    width: 20vw;
+    word-break: break-all;
+}
+
+#tovabbgomb{
+    margin: 10px;
+    background-color: var(--fo);
+    color: white;
+    border-color: var(--mellek);
+    border-radius: 20px;
 }

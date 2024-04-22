@@ -33,32 +33,39 @@ terkepKep.onload = function(){
 
 // Event listener for mouse click on canvas
 terkep.addEventListener('click', function(event) {
-
-    terkepRajz(terkepKep,ctxTerkep,terkep,800,500);
-
-
-    const rect = terkep.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    if (!szunet || localStorage.admin == 1) {
+        terkepRajz(terkepKep,ctxTerkep,terkep,800,500);
 
 
-    let pin = document.createElement("img");
-    pin.src="pin.png";
-    pin.onload = function(){
-        ctxTerkep.shadowColor = "black";
-        ctxTerkep.shadowBlur = 15;
-        ctxTerkep.drawImage(pin, x-15, y-30, 25,25);
+        const rect = terkep.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+    
+        
+
+        let pin = document.createElement("img");
+        pin.src="pin.png";
+        pin.onload = function(){
+            ctxTerkep.shadowColor = "black";
+            ctxTerkep.shadowBlur = 15;
+            ctxTerkep.drawImage(pin, x-15, y-30, 25,25);
+        }
+    
+        if (localStorage.admin == 0) {
+            terkepreKatt(x,y);
+        }
+    
+    
+        console.log("Mouse clicked at (x:", x, ", y:", y, ")");
+        var kordinataDiv = document.getElementById("kordinata");
+        if (kordinataDiv) {
+            kordinataDiv.innerHTML = "Mouse clicked at (x:"+ x+ ", y:"+ y+ ")";
+        }
+        kordvan = true;
+        buttonendisable(kordvan,textvan,nehezsegvan);
     }
 
 
-
-    console.log("Mouse clicked at (x:", x, ", y:", y, ")");
-    var kordinataDiv = document.getElementById("kordinata");
-    if (kordinataDiv) {
-        kordinataDiv.innerHTML = "Mouse clicked at (x:"+ x+ ", y:"+ y+ ")";
-    }
-    kordvan = true;
-    buttonendisable(kordvan,textvan,nehezsegvan);
 });
 
 async function felhtombfeltolt() {
@@ -114,36 +121,7 @@ function nehezsegchanged() {
         buttonendisable(kordvan,textvan,nehezsegvan);
 }
 
-async function nehezseg(btn) {
-    
-    await kerdesektombfeltolt();
-    console.log("itt vok");
-    const gombok =document.getElementsByClassName("gombok")
-    for (let index = 0; index < gombok.length; index++) {
-        gombok[index].innerHTML = "";
-    }
-    if (btn.value == "Könnyű") {
-        console.log(btn.value);
-        var mondatkerdes = kerdesektomb.find(obj => obj.nehezseg == "Könnyű");
-        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.kerdes ,gombok[index].className="Kerdesjelen"; }
-        
-    }
-    
-    else if (btn.value == "Közepes") {
-        console.log(btn.value);
-        var mondatkerdes  = kerdesektomb.find(obj => obj.nehezseg == "Közepes");
-        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.kerdes ; }
-    }
-    else if (btn.value == "Nehéz") {
-        console.log(btn.value);
-        var mondatkerdes  = kerdesektomb.find(obj => obj.nehezseg == "Nehéz");
-        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.kerdes; }
-    }
-    else{
-        console.log("NEMJÓ");
-    }
 
-} 
 
 function kerdesfeltolt() {
     const kerdes = document.getElementById("kerdesbox").value;
@@ -286,11 +264,13 @@ async function kerdestorles() {
 
 
 function buttonendisable(kordvan, textvan, nehezsegvan) {
-    if (kordvan && textvan && nehezsegvan) {
+    if (bekuldgomb) {
+        if (kordvan && textvan && nehezsegvan) {
         bekuldgomb.disabled=false; 
     }
-    else
-        bekuldgomb.disabled=true; 
+        else
+            bekuldgomb.disabled=true; 
+    }
 }
 
 if (localStorage.admin == 1) {
