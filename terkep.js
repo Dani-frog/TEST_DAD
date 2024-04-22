@@ -1,3 +1,4 @@
+console.log(localStorage);
 console.log(bejelentkezve)
 const terkep = document.getElementById("terkep");
 const ctxTerkep = terkep.getContext("2d");
@@ -32,33 +33,39 @@ terkepKep.onload = function(){
 
 // Event listener for mouse click on canvas
 terkep.addEventListener('click', function(event) {
-
-    terkepRajz(terkepKep,ctxTerkep,terkep,800,500);
-
-
-    const rect = terkep.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    if (!szunet || localStorage.admin == 1) {
+        terkepRajz(terkepKep,ctxTerkep,terkep,800,500);
 
 
-    let pin = document.createElement("img");
-    pin.src="pin.png";
-    pin.onload = function(){
-        ctxTerkep.shadowColor = "black";
-        ctxTerkep.shadowBlur = 15;
-        ctxTerkep.drawImage(pin, x-15, y-30, 25,25);
-        keprekurziv(i+1,limit);
+        const rect = terkep.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+    
+        
+
+        let pin = document.createElement("img");
+        pin.src="pin.png";
+        pin.onload = function(){
+            ctxTerkep.shadowColor = "black";
+            ctxTerkep.shadowBlur = 15;
+            ctxTerkep.drawImage(pin, x-15, y-30, 25,25);
+        }
+    
+        if (localStorage.admin == 0) {
+            terkepreKatt(x,y);
+        }
+    
+    
+        console.log("Mouse clicked at (x:", x, ", y:", y, ")");
+        var kordinataDiv = document.getElementById("kordinata");
+        if (kordinataDiv) {
+            kordinataDiv.innerHTML = "Mouse clicked at (x:"+ x+ ", y:"+ y+ ")";
+        }
+        kordvan = true;
+        buttonendisable(kordvan,textvan,nehezsegvan);
     }
 
 
-
-    console.log("Mouse clicked at (x:", x, ", y:", y, ")");
-    var kordinataDiv = document.getElementById("kordinata");
-    if (kordinataDiv) {
-        kordinataDiv.innerHTML = "A kiválasztott helyszín koordinátája (x:"+ x+ ", y:"+ y+ ")";
-    }
-    kordvan = true;
-    buttonendisable(kordvan,textvan,nehezsegvan);
 });
 
 async function felhtombfeltolt() {
@@ -115,41 +122,7 @@ function nehezsegchanged() {
         buttonendisable(kordvan,textvan,nehezsegvan);
 }
 
-async function nehezseg(btn) {
-    
-    await kerdesektombfeltolt();
-    console.log("itt vok");
-    const gombok =document.getElementsByClassName("gombok")
-    for (let index = 0; index < gombok.length; index++) {
-        gombok[index].innerHTML = "";
-        
-    }
-    if (btn.value == "Könnyű") {
-        console.log(btn.value);
-        var mondatkerdes = kerdesektomb.find(obj => obj.nehezseg == "Könnyű");
-        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.kerdes ; }
-        
-    }
-    
-    else if (btn.value == "Közepes") {
-        console.log(btn.value);
-        var mondatkerdes  = kerdesektomb.find(obj => obj.nehezseg == "Közepes");
-        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.kerdes ; }
-    }
-    else if (btn.value == "Nehéz") {
-        console.log(btn.value);
-        var mondatkerdes  = kerdesektomb.find(obj => obj.nehezseg == "Nehéz");
-        for (let index = 0; index < gombok.length; index++) { gombok[index].innerHTML = mondatkerdes.kerdes; }
-    }
-    else{console.log("NEMJÓ");}/*    const selectedQuestion = kerdesektomb.find(obj => obj.name === btn.value);
-    if (selectedQuestion) {
-        for (let index = 0; index < gombok.length; index++) {
-            gombok[index].innerHTML = selectedQuestion.name;
-        }
-    } else {
-        console.log("Nem található kérdés ehhez a nehézséghez!");
-    }*/
-} 
+
 
 function kerdesfeltolt() {
     const kerdes = document.getElementById("kerdesbox").value;
@@ -261,10 +234,8 @@ async function kerdeseklista() {
 
     });
 }
-window.onload = function() {
-    kerdeseklista();
-    felhasznaloklista();
-};
+
+
 
 var felhtomb = [];
 
@@ -287,21 +258,24 @@ async function kerdestorles() {
     var select = document.getElementById("kerdeseklista");
     console.log("anyuci");
     const query = "delete FROM terkep where kerdes ='"+select.options[select.selectedIndex].text+"';"; // sortörlésxd select az gyak egy listbox a selec.options[]stb az self explanatory.
-        console.log(query);
-        const tablahossz = await LekerdezesEredmenye(query);
+    console.log(query);
+    const tablahossz = await LekerdezesEredmenye(query);
         
     kerdeseklista();
 }
 
 
 function buttonendisable(kordvan, textvan, nehezsegvan) {
-    if (kordvan && textvan && nehezsegvan) {
+    if (bekuldgomb) {
+        if (kordvan && textvan && nehezsegvan) {
         bekuldgomb.disabled=false; 
     }
-    else
-        bekuldgomb.disabled=true; 
+        else
+            bekuldgomb.disabled=true; 
+    }
 }
 
-function felhmodosit(params) {
-    
+if (localStorage.admin == 1) {
+    kerdeseklista();
+    felhasznaloklista();
 }
