@@ -216,6 +216,7 @@ function Emberkitorol(){
                 //alert("megvanfőnők");
                 console.log("felhasználó kitörölve!");
             });
+    felhasznaloklista();
 }
 
 async function kerdeseklista() {
