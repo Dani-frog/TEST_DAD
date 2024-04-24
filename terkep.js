@@ -217,6 +217,7 @@ function Emberkitorol(){
                 console.log("felhasználó kitörölve!");
             });
     felhasznaloklista();
+    felhasznaloklista();
 }
 
 async function kerdeseklista() {
@@ -227,8 +228,23 @@ async function kerdeseklista() {
     
     // Populate options from the array
     await kerdesektomb.forEach(function(sor) {
+        var table = document.createElement("table");
+        var tr = document.createElement("tr");
+        var th1 = document.createElement("th");
+        var th2 = document.createElement("th");
+        var th3 = document.createElement("th");
+        th1.innerText ="Kérdés";
+        th2.innerText ="Nehézség";
+        th3.innerText ="Koordináta";
+        tr.appendChild(th1); 
+        tr.appendChild(th2); 
+        tr.appendChild(th3);
+        table.appendChild(tr);
+
+
         var option = document.createElement("option");
-        option.text = sor.kerdes;
+        option.innerHTML = sor.kerdes +" "+sor.nehezseg +" "+ sor.xy;
+        
         select.add(option);
 
     });
