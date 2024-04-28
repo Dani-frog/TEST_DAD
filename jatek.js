@@ -4,6 +4,7 @@ var y;
 var jelenlegiKerdes = -1;
 var joKerdesek;
 var kerdesDiv;
+var oszespont = 0;
 
 
 async function nehezseg(btn) {
@@ -36,7 +37,28 @@ async function nehezseg(btn) {
 
 function kerdesKiiras(){
     jelenlegiKerdes++;
-    kerdesDiv.innerHTML = joKerdesek[jelenlegiKerdes].kerdes;
+    if (jelenlegiKerdes == 10 || joKerdesek.length == jelenlegiKerdes) {
+        gameOver();
+    }
+    else{
+        kerdesDiv.innerHTML = joKerdesek[jelenlegiKerdes].kerdes;
+    }
+}
+
+function gameOver(){
+    alert("Jatek vege");
+    alert("Atlagos pontod: "+ atlagosPont());
+    location.reload();
+}
+
+function atlagosPont(){
+    if (joKerdesek.length < 10) {
+        return Math.round(oszespont/joKerdesek.length);
+    }
+    else{
+        return Math.round(oszespont/10);
+    }
+
 }
 
 function shuffle(array) {
@@ -53,15 +75,31 @@ function terkepreKatt(xKord,yKord){
 }
 
 function pontozas(){
-    let helyesx = joKerdesek[jelenlegiKerdes].xy.split(";")[0]
-    let helyesy = joKerdesek[jelenlegiKerdes].xy.split(";")[1]
+    if (szunet == true) {
+        //tovabblepes
 
-    console.log(helyesx*2 - x,helyesy*2 -y)
+        szunet = false;
+        terkepRajz(terkepKep,ctxTerkep,terkep,800,500);
+        kerdesKiiras();
+    }
+    else if(szunet == false){
+        //pontozas rendesen
 
-    const deltaX = helyesx - x;
-    const deltaY = helyesy - y;
-
-    var temp = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-    console.log(temp1)
+        szunet = true;
+        let helyesx = joKerdesek[jelenlegiKerdes].xy.split(";")[0]
+        let helyesy = joKerdesek[jelenlegiKerdes].xy.split(";")[1]
+    
+        console.log(helyesx*2 - x,helyesy*2 -y)
+    
+        const deltaX = helyesx - x;
+        const deltaY = helyesy - y;
+    
+        var pont = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        pont = Math.round(pont)
+        pont = 1000-pont
+        console.log(pont)
+        oszespont += pont
+        document.getElementById("kerdesjelen").innerHTML = "Az elért pontod: "+pont;
+    }
 
 }
