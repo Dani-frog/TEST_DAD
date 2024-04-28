@@ -178,11 +178,11 @@ function AdminFeltolt() {
     const adminnev = felhlista.options[felhlista.selectedIndex].text;
     const rangja = LekerdezesEredmenye("select f.admin from felhasznalo f where f.nev = '"+adminnev+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
     rangja.then((segglyuk)=> {
-                console.log(adminnev.value);
+                console.log(adminnev);
                 console.log("ezaz: "+localStorage.nev);
                 console.log(segglyuk[0]);
 
-                if(adminnev.value == localStorage.nev){
+                if(adminnev == localStorage.nev){
                     alert("hiba! Önmagad nem tudod admintalanítani!!!44!!");
                 }
                 
@@ -211,6 +211,10 @@ function Emberkitorol(){
     const felhlista = document.getElementById("felhlista");
     const deletenev = felhlista.options[felhlista.selectedIndex].text;
 
+    if (deletenev == localStorage.nev) {
+        alert("nem tudod magadat törölni")
+        return;
+    }
     const pusztulj = LekerdezesEredmenye("delete from felhasznalo where nev='"+deletenev+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
     pusztulj.then((segglyuk)=> {
                 //alert("megvanfőnők");
