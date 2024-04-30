@@ -46,9 +46,15 @@ function kerdesKiiras(){
 }
 
 function gameOver(){
+    const gombok = document.getElementsByClassName("gombok")
     alert("Jatek vege");
     alert("Atlagos pontod: "+ atlagosPont());
-    location.reload();
+
+    let ujratoltgomb = document.createElement("input");
+    ujratoltgomb.type ="button";
+    ujratoltgomb.value = "Új játék";
+    ujratoltgomb.setAttribute("onclick","location.reload()");
+    gombok[0].appendChild(ujratoltgomb);
 }
 
 function atlagosPont(){
