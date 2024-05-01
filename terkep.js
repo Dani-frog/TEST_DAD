@@ -247,7 +247,7 @@ async function kerdeseklista() {
 
 
         var option = document.createElement("option");
-        option.innerHTML = sor.kerdes +" "+sor.nehezseg +" "+ sor.xy;
+        option.innerHTML = sor.kerdes;
         
         select.add(option);
 

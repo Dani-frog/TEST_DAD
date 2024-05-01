@@ -305,6 +305,7 @@ async function adatokModositasa(){
         const response = await LekerdezesEredmenye(query);
         localStorage.nev = fn.value;
         console.log("feltöltve");
+        location.reload();
     }
 }
 
