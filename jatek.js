@@ -107,5 +107,4 @@ function pontozas(){
         oszespont += pont
         document.getElementById("kerdesjelen").innerHTML = "Az elért pontod: "+pont;
     }
-
 }

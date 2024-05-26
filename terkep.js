@@ -13,6 +13,7 @@ if (bekuldgomb) {
 terkep.height = 500;
 terkep.width = 800;
 var nehezseg;
+var modositandoKerdes;
 terkepKep.src="Kepek/highqualitybighungary.jpg";
 
 function terkepRajz(img,ctx,canvas,szel,mag) {
@@ -59,7 +60,7 @@ terkep.addEventListener('click', function(event) {
         console.log("Mouse clicked at (x:", x, ", y:", y, ")");
         var kordinataDiv = document.getElementById("kordinata");
         if (kordinataDiv) {
-            kordinataDiv.innerHTML = "Mouse clicked at (x:"+ x+ ", y:"+ y+ ")";
+            kordinataDiv.innerHTML = "Egér itt lett lenyomva: (x:"+ x+ ", y:"+ y+ ")";
         }
         kordvan = true;
         buttonendisable(kordvan,textvan,nehezsegvan);
@@ -281,6 +282,40 @@ async function kerdestorles() {
     const tablahossz = await LekerdezesEredmenye(query);
         
     kerdeseklista();
+}
+
+
+async function kerdesModositasa(){
+    var select = document.getElementById("kerdeseklista");
+    select.options[select.selectedIndex].text
+    const query = "SELECT * FROM `terkep` WHERE kerdes = '"+select.options[select.selectedIndex].text+"'"; 
+    const kerdes = await LekerdezesEredmenye(query);
+    console.log(kerdes[0].kerdes)
+    modositandoKerdes = kerdes;
+
+    document.getElementById("kerdesbox").value = kerdes[0].kerdes;
+    document.getElementById("kerdesbutton").value = "Kérdés változtatása";
+    var radioButton = document.getElementById(kerdes[0].nehezseg);
+    radioButton.checked = true;
+
+    let pin = document.createElement("img");
+    pin.src="pin.png";
+    let x = kerdes[0].xy.split(";")[0]
+    let y = kerdes[0].xy.split(";")[1]
+    pin.onload = function(){
+        ctxTerkep.shadowColor = "black";
+        ctxTerkep.shadowBlur = 15;
+        ctxTerkep.drawImage(pin, x-15, y-30, 25,25);
+    }
+
+
+
+    console.log("Mouse clicked at (x:", x, ", y:", y, ")");
+    var kordinataDiv = document.getElementById("kordinata");
+    if (kordinataDiv) {
+        kordinataDiv.innerHTML = "Egér itt lett lenyomva: (x:"+ x+ ", y:"+ y+ ")";
+    }
+
 }
 
 
