@@ -46,13 +46,18 @@ function kerdesKiiras(){
 }
 
 function gameOver(){
-    const gombok = document.getElementsByClassName("gombok")
+    jQuery("document").ready(function($){ var flakes = '', randomColor; for(var i = 0, len = 400; i < len; i++) { randomColor = Math.floor(Math.random()*16777215).toString(16); flakes += '<div class="ball" style="background: #'+randomColor; flakes += '; animation-duration: '+(Math.random() * 9 + 2)+'s; animation-delay: '; flakes += (Math.random() * 2 + 0)+'s;"></div>'; } document.getElementById('confetti').innerHTML = flakes;});
+    const gombok = document.getElementsByClassName("gombok");
+    const confetto = document.getElementById("confetti");
+    document.getElementById("tovabbgomb").style.display="none";
+    confetto.style.display="flex";
     alert("Jatek vege");
     alert("Atlagos pontod: "+ atlagosPont());
 
     let ujratoltgomb = document.createElement("input");
     ujratoltgomb.type ="button";
     ujratoltgomb.value = "Új játék";
+    ujratoltgomb.className +="basicGomb";
     ujratoltgomb.setAttribute("onclick","location.reload()");
     gombok[0].appendChild(ujratoltgomb);
 }
@@ -108,3 +113,4 @@ function pontozas(){
         document.getElementById("kerdesjelen").innerHTML = "Az elért pontod: "+pont;
     }
 }
+
