@@ -115,9 +115,15 @@ function textchanged() {
         textvan = true;
         buttonendisable(kordvan,textvan,nehezsegvan);
     }
+    else{
+        textvan = false;
+        buttonendisable(kordvan,textvan,nehezsegvan);
+    }
+    
 }
 
 function nehezsegchanged() {
+    buttonendisable(kordvan,textvan,nehezsegvan);
     nehezsegvan = true;
         buttonendisable(kordvan,textvan,nehezsegvan);
 }
@@ -127,7 +133,6 @@ function nehezsegchanged() {
 function kerdesfeltolt() {
     const kerdes = document.getElementById("kerdesbox").value;
     var kordinata = document.getElementById("kordinata");
-
     const line = kordinata.innerText
     const regex = /(?:\(x:)(\d+\.*\d*)(?:, y:)(\d+\.*\d*)(?:\))/;
     console.log(line);
@@ -145,7 +150,6 @@ function kerdesfeltolt() {
     } else {
         //alert("Nincs megadva koordináta!");
         console.log("Nincs megadva koordináta!");
-        
     }
     const selectedOption = document.querySelector('input[name="nehezseg"]:checked')
     let nszint;
@@ -170,7 +174,7 @@ function kerdesfeltolt() {
     const response = LekerdezesEredmenye(query);
     console.log(response);
     //alert("Kérdés sikeresen feltöltve!");
-    console.log("Kérdés sikeresen feltöltve!");
+    console.log("Kérdés sikeresen feltöltve!");     
     location.reload();
 }
 
@@ -286,6 +290,10 @@ async function kerdestorles() {
 
 
 async function kerdesModositasa(){
+    nehezsegchanged();
+    textchanged();
+    kordvan = true;
+    textvan = true;
     var select = document.getElementById("kerdeseklista");
     select.options[select.selectedIndex].text
     const query = "SELECT * FROM `terkep` WHERE kerdes = '"+select.options[select.selectedIndex].text+"'"; 
