@@ -42,7 +42,7 @@
         <h2>Adj meg egy új kérdést</h2>
         <p id="kordinata">Térképre nyomva tud helyszínt megadni</p>
         <input type="text" id="kerdesbox" name="kerdes" placeholder="Add meg a kérdést" onchange="textchanged()" onkeypress = "this.onchange();" onpaste = "this.onchange();"oninput = "this.onchange();">
-        <input type="button" id="kerdesbutton" value="Kérdés hozzáadása" onclick="kerdesfeltolt()" onclick="kerdesfeltolt()">
+        <input type="button" id="kerdesbutton" value="Kérdés hozzáadása" onclick="kerdesfeltolt(this)" onclick="kerdesfeltolt()">
           <div id="radiok">
             <input type="radio" id="Könnyű" name="nehezseg" value="Könnyű" onchange="nehezsegchanged()">
             <label for="Könnyű">Könnyű</label><br>
@@ -135,19 +135,6 @@
           <canvas id="terkep">
         
           </canvas>
-          <div>
-                <table>
-                  <thead>
-                    Scoreboard
-                  </thead>
-                  <tr>
-                    <td>Név</td>
-                    <td>Pont</td>
-                    <td>Idő</td>
-                  </tr>
-                </table>
-
-          </div>
         </div>
         
         <div id="kerdesdiv" class="col-4">

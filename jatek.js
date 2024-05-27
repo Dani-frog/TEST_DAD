@@ -99,6 +99,15 @@ function pontozas(){
         szunet = true;
         let helyesx = joKerdesek[jelenlegiKerdes].xy.split(";")[0]
         let helyesy = joKerdesek[jelenlegiKerdes].xy.split(";")[1]
+
+        let pin = document.createElement("img");
+        pin.src="helyesPin.png";
+        pin.onload = function(){
+            ctxTerkep.shadowColor = "black";
+            ctxTerkep.shadowBlur = 15;
+            ctxTerkep.drawImage(pin, helyesx-15, helyesy-30, 25,25);
+        }
+    
     
         console.log(helyesx*2 - x,helyesy*2 -y)
     
