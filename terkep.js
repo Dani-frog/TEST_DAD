@@ -124,7 +124,7 @@ function nehezsegchanged() {
 
 
 
-function kerdesfeltolt() {
+function kerdesfeltolt(btn) {
     const kerdes = document.getElementById("kerdesbox").value;
     var kordinata = document.getElementById("kordinata");
 
@@ -165,13 +165,24 @@ function kerdesfeltolt() {
         //alert("Nem minden pont teljesült be! (Koordináta választás,)");
         return
     }
-    const query = "insert into terkep VALUES(NULL, '"+kerdes+"','"+nszint+"','"+koordinata+"')"
-    console.log(query)
-    const response = LekerdezesEredmenye(query);
-    console.log(response);
-    //alert("Kérdés sikeresen feltöltve!");
-    console.log("Kérdés sikeresen feltöltve!");
-    location.reload();
+    if (btn.value == "Kérdés változtatása" ) {
+        const query = "insert into terkep VALUES(NULL, '"+kerdes+"','"+nszint+"','"+koordinata+"')"
+        console.log(query)
+        const response = LekerdezesEredmenye(query);
+        console.log(response);
+        //alert("Kérdés sikeresen feltöltve!");
+        console.log("Kérdés sikeresen feltöltve!");
+        location.reload();
+    }
+    else{
+        const query = "UPDATE terkep SET kerdes = '"+kerdes+"', xy = '"+koordinata+"', nehezseg = '"+nszint+"' WHERE id = "+modositandoKerdes[0].id+";";
+        console.log(query)
+        const response = LekerdezesEredmenye(query);
+        console.log(response);
+        //alert("Kérdés sikeresen feltöltve!");
+        console.log("Kérdés sikeresen feltöltve!");
+        location.reload();
+    }
 }
 
 function AdminFeltolt() {
@@ -295,6 +306,7 @@ async function kerdesModositasa(){
 
     document.getElementById("kerdesbox").value = kerdes[0].kerdes;
     document.getElementById("kerdesbutton").value = "Kérdés változtatása";
+    document.getElementById("kerdesbutton").disabled = false;
     var radioButton = document.getElementById(kerdes[0].nehezseg);
     radioButton.checked = true;
 
