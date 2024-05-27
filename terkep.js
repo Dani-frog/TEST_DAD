@@ -166,16 +166,16 @@ function kerdesfeltolt(btn) {
         return
     }
     if (btn.value == "Kérdés változtatása" ) {
-        const query = "insert into terkep VALUES(NULL, '"+kerdes+"','"+nszint+"','"+koordinata+"')"
+        const query = "UPDATE terkep SET kerdes = '"+kerdes+"', xy = '"+koordinata+"', nehezseg = '"+nszint+"' WHERE id = "+modositandoKerdes[0].id+";";
         console.log(query)
         const response = LekerdezesEredmenye(query);
         console.log(response);
         //alert("Kérdés sikeresen feltöltve!");
         console.log("Kérdés sikeresen feltöltve!");
-        location.reload();
+        // location.reload();
     }
     else{
-        const query = "UPDATE terkep SET kerdes = '"+kerdes+"', xy = '"+koordinata+"', nehezseg = '"+nszint+"' WHERE id = "+modositandoKerdes[0].id+";";
+        const query = "insert into terkep VALUES(NULL, '"+kerdes+"','"+nszint+"','"+koordinata+"')"
         console.log(query)
         const response = LekerdezesEredmenye(query);
         console.log(response);
