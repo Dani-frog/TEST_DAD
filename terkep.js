@@ -169,6 +169,7 @@ function kerdesfeltolt(btn) {
         //alert("Nem minden pont teljesült be! (Koordináta választás,)");
         return
     }
+    console.log(koordinata)
     if (btn.value == "Kérdés változtatása" ) {
         const query = "UPDATE terkep SET kerdes = '"+kerdes+"', xy = '"+koordinata+"', nehezseg = '"+nszint+"' WHERE id = "+modositandoKerdes[0].id+";";
         console.log(query)
@@ -185,21 +186,21 @@ function kerdesfeltolt(btn) {
         console.log(response);
         //alert("Kérdés sikeresen feltöltve!");
         console.log("Kérdés sikeresen feltöltve!");
-        location.reload();
+        // location.reload();
     }
 }
 
-function AdminFeltolt() {
+function AdminFeltolt(btn) {
     const felhlista = document.getElementById("felhlista");
     const adminnev = felhlista.options[felhlista.selectedIndex].text;
-    const rangja = LekerdezesEredmenye("select f.admin from felhasznalo f where f.nev = '"+adminnev+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
+    const rangja = LekerdezesEredmenye("select f.admin from felhasznalo f where f.nev = '"+adminnev+"'");
     rangja.then((segglyuk)=> {
                 console.log(adminnev);
                 console.log("ezaz: "+localStorage.nev);
                 console.log(segglyuk[0]);
 
                 if(adminnev == localStorage.nev){
-                    alert("hiba! Önmagad nem tudod admintalanítani!!!44!!");
+                    flashButton(btn,"red")
                 }
                 
                 else if(segglyuk[0].admin == 0){
@@ -208,35 +209,37 @@ function AdminFeltolt() {
                     const response = LekerdezesEredmenye(query);
                     console.log(query);
                     console.log(response);
-                    alert("Ember sikeresen Adminná téve!");
+                    flashButton(btn,"green")
                 }
                 else if(segglyuk[0].admin == 1){
                     const query = "update felhasznalo set admin=0 where nev = '"+adminnev+"'"
                     const response = LekerdezesEredmenye(query);
                     console.log(query);
                     console.log(response);
-                    alert("Ember sikeresen admintalanítva!");
+                    flashButton(btn,"green")
                 }
             });
 
 
 
 } 
-function Emberkitorol(){
+function Emberkitorol(btn){
 
     const felhlista = document.getElementById("felhlista");
     const deletenev = felhlista.options[felhlista.selectedIndex].text;
 
     if (deletenev == localStorage.nev) {
-        alert("nem tudod magadat törölni")
+        flashButton(btn,"red")
         return;
     }
+    flashButton(btn,"green")
     const pusztulj = LekerdezesEredmenye("delete from felhasznalo where nev='"+deletenev+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
     pusztulj.then((segglyuk)=> {
                 console.log("felhasználó kitörölve!");
             });
     felhasznaloklista();
     felhasznaloklista();
+
 }
 
 async function kerdeseklista() {
@@ -300,6 +303,7 @@ async function kerdestorles() {
 
 
 async function kerdesModositasa(){
+    terkepRajz(terkepKep,ctxTerkep,terkep,800,500);
     nehezsegchanged();
     textchanged();
     kordvan = true;
@@ -353,6 +357,77 @@ if (localStorage.admin == 1) {
     felhasznaloklista();
 }
 
-function adminNevKeres(){
-    console.log("fasz")
+async function adminNevKeres(){
+
+    var nevElement = document.getElementById("adminnavaltas");
+    var nev = nevElement.value; // Assuming the element is an input or has a value property
+    
+    var jolista = felhtomb.filter(x => x.nev.includes(nev));
+
+    console.log(jolista)
+
+    var select = document.getElementById("felhlista");
+    // Clear existing options
+    select.innerHTML = '';
+    
+    // Populate options from the array
+    await jolista.forEach(function(sor) {
+        var option = document.createElement("option");
+        option.text = sor.nev;
+        select.add(option);
+
+    });
+}
+
+
+function flashButton(button,color) {
+    const originalColor = window.getComputedStyle(button).backgroundColor; // Get the computed background color
+    const flashColor = color; // The color to flash
+
+    // Flash to the specified color
+    button.style.backgroundColor = flashColor;
+
+    // After the flash duration, revert to the original color
+    setTimeout(() => {
+        button.style.backgroundColor = originalColor;
+    }, 500); // Flash duration (500ms)
+}
+
+
+async function kerdesNevKeres(){
+
+    var nevElement = document.getElementById("kerdesvaltas");
+    var kerdesBekert = nevElement.value; // Assuming the element is an input or has a value property
+    
+
+    console.log(kerdesektomb)
+    var jolista = kerdesektomb.filter(x => x.kerdes.includes(kerdesBekert));
+
+    console.log(jolista)
+
+    var select = document.getElementById("kerdeseklista");
+    // Clear existing options
+    select.innerHTML = '';
+    
+    await jolista.forEach(function(sor) {
+        var table = document.createElement("table");
+        var tr = document.createElement("tr");
+        var th1 = document.createElement("th");
+        var th2 = document.createElement("th");
+        var th3 = document.createElement("th");
+        th1.innerText ="Kérdés";
+        th2.innerText ="Nehézség";
+        th3.innerText ="Koordináta";
+        tr.appendChild(th1); 
+        tr.appendChild(th2); 
+        tr.appendChild(th3);
+        table.appendChild(tr);
+
+
+        var option = document.createElement("option");
+        option.innerHTML = sor.kerdes;
+        
+        select.add(option);
+
+    });
 }
