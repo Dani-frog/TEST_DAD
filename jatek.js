@@ -5,6 +5,7 @@ var jelenlegiKerdes = -1;
 var joKerdesek;
 var kerdesDiv;
 var oszespont = 0;
+var korokszama = 0;
 
 
 async function nehezseg(btn) {
@@ -33,6 +34,7 @@ async function nehezseg(btn) {
     gomb.setAttribute("onclick","pontozas()")
 
     gombok[0].appendChild(gomb);
+    document.getElementById("cimamitpontszamracserelunk").innerText = ("Jelenlegi átlagos pontszámod: " + atlagosPont());
 } 
 
 function kerdesKiiras(){
@@ -60,11 +62,12 @@ function gameOver(){
     ujratoltgomb.className +="basicGomb";
     ujratoltgomb.setAttribute("onclick","location.reload()");
     gombok[0].appendChild(ujratoltgomb);
+    korokszama = 0;
 }
 
 function atlagosPont(){
     if (joKerdesek.length < 10) {
-        return Math.round(oszespont/joKerdesek.length);
+        return Math.round(oszespont/korokszama);
     }
     else{
         return Math.round(oszespont/10);
@@ -94,6 +97,7 @@ function pontozas(){
         kerdesKiiras();
     }
     else if(szunet == false){
+        korokszama ++;
         //pontozas rendesen
 
         szunet = true;
@@ -120,6 +124,7 @@ function pontozas(){
         console.log(pont)
         oszespont += pont
         document.getElementById("kerdesjelen").innerHTML = "Az elért pontod: "+pont;
+        document.getElementById("cimamitpontszamracserelunk").innerText = ("Jelenlegi átlagos pontszámod: " + atlagosPont());
     }
 }
 
