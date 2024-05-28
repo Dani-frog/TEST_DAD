@@ -53,9 +53,8 @@ function gameOver(){
     const confetto = document.getElementById("confetti");
     document.getElementById("tovabbgomb").style.display="none";
     confetto.style.display="flex";
-    alert("Jatek vege");
-    alert("Atlagos pontod: "+ atlagosPont());
 
+    document.getElementById("cimamitpontszamracserelunk").innerHTML = "A játék vége, elért pontszám: "+atlagosPont();
     let ujratoltgomb = document.createElement("input");
     ujratoltgomb.type ="button";
     ujratoltgomb.value = "Új játék";
@@ -67,12 +66,15 @@ function gameOver(){
 
 function atlagosPont(){
     if (joKerdesek.length < 10) {
-        return Math.round(oszespont/korokszama);
+        var pont = Math.round(oszespont/korokszama);
     }
     else{
-        return Math.round(oszespont/10);
+        var pont = Math.round(oszespont/10)
     }
-
+    if (isNaN(parseFloat(pont))) {
+        return 0;
+    }
+    return pont
 }
 
 function shuffle(array) {

@@ -29,16 +29,24 @@
     <div id = "headerszeruseg">
       <button type="button" class="btn btn-primary basicGomb" data-bs-toggle="modal" data-bs-target="#adatokModositasa" onclick="adatokModositaGombClick()">Adatok modosítása</button>
       <input type="button" value="Kijelentkezés" class="btn btn-primary basicGomb" onclick="logout()">
+      <!--Emberkezelés-->
+      <button type="button" class="btn btn-primary basicGomb" data-bs-toggle="modal" data-bs-target="#embermodal">
+        Emberek kezelése
+      </button>
+            <!-- Kerdéskezelés-->
+      <button type="button" class="btn btn-primary basicGomb" data-bs-toggle="modal" data-bs-target="#kerdesmodal">
+        Kérdések kezelése
+      </button>
     </div>
-    <div class="flex-container">
-      <div id="baloldaldiv" class="col-8">
+    <div class="egeszOldalDiv">
+      <div id="baloldaldiv">
         <canvas id="terkep">
         </canvas>
         <div>
         </div>
       </div>
       
-      <div id="kerdesdiv" class="col-4">
+      <div id="kerdesdiv">
         <h2>Adj meg egy új kérdést</h2>
         <p id="kordinata">Térképre nyomva tud helyszínt megadni</p>
         <input type="text" id="kerdesbox" name="kerdes" placeholder="Add meg a kérdést" onchange="textchanged()" onkeypress = "this.onchange();" onpaste = "this.onchange();"oninput = "this.onchange();">
@@ -57,10 +65,7 @@
     </div>
     <div class="flex-container">
 
-      <!--Emberkezelés-->
-      <button type="button" class="btn btn-primary basicGomb" data-bs-toggle="modal" data-bs-target="#embermodal">
-        Emberek kezelése
-      </button>
+
 
       <!-- Modal -->
       <div class="modal fade" id="embermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -72,6 +77,7 @@
             </div>
             <div class="modal-body">
               <div id="Admindiv">
+                <input type="text" name="adminnavaltas" id="adminnavaltas" oninput="adminNevKeres()" placeholder="Adja meg a keresett admin nevét">
                 <select title="A kijelölt felhasználónevet a Jóváhagyás gombbal módosíthatja!" id="felhlista" size="10" >
                   
                 </select>
@@ -83,10 +89,7 @@
         </div>
       </div>
 
-      <!-- Kerdéskezelés-->
-      <button type="button" class="btn btn-primary basicGomb" data-bs-toggle="modal" data-bs-target="#kerdesmodal">
-        Kérdések kezelése
-      </button>
+
 
       <!-- Modal -->
       <div class="modal fade" id="kerdesmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -130,14 +133,14 @@
           <button type="button" class="btn btn-primary basicGomb" data-bs-toggle="modal" data-bs-target="#adatokModositasa" onclick="adatokModositaGombClick()">Adatok modosítása</button>                 
           <input type="button" value="Kijelentkezés" class="btn btn-primary basicGomb" onclick="logout()">
         </div>
-      <div class="flex-container">
-        <div id="baloldaldiv" class="col-8">
+      <div class="egeszOldalDiv">
+        <div id="baloldaldiv">
           <canvas id="terkep">
-            
+
           </canvas>
         </div>
         
-        <div id="kerdesdiv" class="col-4">
+        <div id="kerdesdiv" >
           <h2 id="cimamitpontszamracserelunk">Állítsd be a nehézséget</h2>
 
           <div class="gombok">
@@ -161,34 +164,34 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+            <form id="loginForm">
+              <label for="regfnmod">Felhasználónév: </label>
+                <input type="text" id="regfnmod"
+                    required pattern="[a-zA-Z0-9._]{3,16}"
+                    placeholder="Add meg a felhasználónevet!"
+                    minlength="3" maxlength="16"> 
+                    <span id="fnInfomod"></span><br>
 
-            <label for="regfnmod">Felhasználónév: </label>
-              <input type="text" id="regfnmod"
-                  required pattern="[a-zA-Z0-9._]{3,16}"
-                  placeholder="Add meg a felhasználónevet!"
-                  minlength="3" maxlength="16"> 
-                  <span id="fnInfomod"></span><br>
+                <label for="regemailmod">E-mail cím:</label>
+                <input type="email" id="regemailmod"
+                    required pattern="[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}"
+                    placeholder="Add meg az email címedet!">
+                    <span id="emailInfomod"></span><br>
 
-              <label for="regemailmod">E-mail cím:</label>
-              <input type="email" id="regemailmod"
-                  required pattern="[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}"
-                  placeholder="Add meg az email címedet!">
-                  <span id="emailInfomod"></span><br>
+                <label for="regpwmod">Jelszó: </label>
+                <input type="password" id="regpwmod"
+                    required pattern="[a-zA-Z0-9._]{8,16}"
+                    placeholder="Jelszó!"
+                    minlength="3" maxlength="16">
+                    <span id="pwInfomod"></span><br>
 
-              <label for="regpwmod">Jelszó: </label>
-              <input type="password" id="regpwmod"
-                  required pattern="[a-zA-Z0-9._]{8,16}"
-                  placeholder="Jelszó!"
-                  minlength="3" maxlength="16">
-                  <span id="pwInfomod"></span><br>
-
-              <label for="regpwremod">Jelszó újra: </label>
-              <input type="password" id="regpwremod"
-                  required pattern="[a-zA-Z0-9._]{8,16}"
-                  placeholder="Jelszó újra!"
-                  minlength="3" maxlength="16"> 
-                  <span id="pwreInfomod"></span><br>
-
+                <label for="regpwremod">Jelszó újra: </label>
+                <input type="password" id="regpwremod"
+                    required pattern="[a-zA-Z0-9._]{8,16}"
+                    placeholder="Jelszó újra!"
+                    minlength="3" maxlength="16"> 
+                    <span id="pwreInfomod"></span><br>
+              </form>
               <p id="regInfomod"></p>
           </div>
           <div class="modal-footer">

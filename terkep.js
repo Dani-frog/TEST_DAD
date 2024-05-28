@@ -233,7 +233,6 @@ function Emberkitorol(){
     }
     const pusztulj = LekerdezesEredmenye("delete from felhasznalo where nev='"+deletenev+"'"); //<-- undefined-dal tér vissza és nem jó, amúgy jó
     pusztulj.then((segglyuk)=> {
-                //alert("megvanfőnők");
                 console.log("felhasználó kitörölve!");
             });
     felhasznaloklista();
@@ -352,4 +351,8 @@ function buttonendisable(kordvan, textvan, nehezsegvan) {
 if (localStorage.admin == 1) {
     kerdeseklista();
     felhasznaloklista();
+}
+
+function adminNevKeres(){
+    console.log("fasz")
 }

@@ -29,11 +29,11 @@ table td{
     color: white;
 }
 .gombok{
-    margin-top: 100px;
+    margin-top: 50px;
     display: flex;
-    align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
+    align-items: center;
 }
 .basicGomb{
     margin: 10px;
@@ -98,7 +98,7 @@ table td{
     border: solid var(--fo) 0.5vw;
     border-radius: 15px;
     box-shadow: 3px 3px 3px black;
-    margin: 5px;
+    margin: px;
     background-color: var(--belter);
     padding: 1vw;
 }
@@ -164,6 +164,7 @@ table td{
     padding: 10px;
     position: relative;
     word-break: break-all;
+    max-width: 300px;
 }
 
 #kerdeseklista{
@@ -188,5 +189,21 @@ table td{
     padding: 1vw;
     align-self: center;
 }
+
+.egeszOldalDiv{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-evenly;
+    align-content: flex-end;
+}
+
+#headerszeruseg {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
 
 #confetti { left: 0; position: fixed; right: 0; top: -160px; z-index: 10000;} #confetti .ball { animation-iteration-count :infinite !important; -webkit-animation-iteration-count :infinite !important; border-radius: 50%; cursor: default; display: inline-block; height: 10px; user-select: none; -webkit-user-select: none; width: 10px;} @-webkit-keyframes falling-left { 0% {-webkit-transform: translate3d(0,0,0);opacity: 1;} 10% { opacity: 0;} 20% { opacity: 1;} 30% { opacity: 0;} 40% { opacity: 1;} 50% { opacity: 0;} 60% { opacity: 1;} 70% { opacity: 0;} 80% { opacity: 1;} 90% { opacity: 0;} 100% {-webkit-transform: translate3d(0,120vh,0); opacity: 1;}} @keyframes falling-left { 0% {-webkit-transform: translate3d(0,0,0);opacity: 1;} 10% { opacity: 0;} 20% { opacity: 1;} 30% { opacity: 0;} 40% { opacity: 1;} 50% { opacity: 0;} 60% { opacity: 1;} 70% { opacity: 0;} 80% { opacity: 1;} 90% { opacity: 0;} 100% {-webkit-transform: translate3d(0,120vh,0); opacity: 1;}} #confetti .ball:nth-child(2n) { -webkit-animation: falling-left linear; animation: falling-left linear ;} @-webkit-keyframes falling-right { 0% {-webkit-transform: translate3d(0,0,0);opacity: 0;} 10% { opacity: 1;} 20% { opacity: 0;} 30% { opacity: 1;} 40% { opacity: 0;} 50% { opacity: 1;} 60% { opacity: 0;} 70% { opacity: 1;} 80% { opacity: 0;} 90% { opacity: 1;} 100% {-webkit-transform: translate3d(0,120vh,0); opacity: 0;}} @keyframes falling-right { 0% {-webkit-transform: translate3d(0,0,0);opacity: 1;} 10% { opacity: 0;} 20% { opacity: 1;} 30% { opacity: 0;} 40% { opacity: 1;} 50% { opacity: 0;} 60% { opacity: 1;} 70% { opacity: 0;} 80% { opacity: 1;} 90% { opacity: 0;} 100% {-webkit-transform: translate3d(0,120vh,0); opacity: 0;} } #confetti .ball:nth-of-type(2n+1) { -webkit-animation: falling-right linear ; animation: falling-right linear;}
