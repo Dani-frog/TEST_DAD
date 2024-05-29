@@ -148,7 +148,6 @@ function kerdesfeltolt(btn) {
         console.log("x:", x);
         console.log("y:", y);
     } else {
-        //alert("Nincs megadva koordináta!");
         console.log("Nincs megadva koordináta!");
     }
     const selectedOption = document.querySelector('input[name="nehezseg"]:checked')
@@ -166,7 +165,6 @@ function kerdesfeltolt(btn) {
       } else {
           bekuldgomb.disabled = true;
         console.log("Nincs nehézség kiválasztva, vagy koordináta vagy kérdés beírva!");
-        //alert("Nem minden pont teljesült be! (Koordináta választás,)");
         return
     }
     console.log(koordinata)
@@ -175,18 +173,16 @@ function kerdesfeltolt(btn) {
         console.log(query)
         const response = LekerdezesEredmenye(query);
         console.log(response);
-        //alert("Kérdés sikeresen feltöltve!");
         console.log("Kérdés sikeresen feltöltve!");
-        // location.reload();
+        location.reload();
     }
     else{
         const query = "insert into terkep VALUES(NULL, '"+kerdes+"','"+nszint+"','"+koordinata+"')"
         console.log(query)
         const response = LekerdezesEredmenye(query);
         console.log(response);
-        //alert("Kérdés sikeresen feltöltve!");
         console.log("Kérdés sikeresen feltöltve!");
-        // location.reload();
+        location.reload();
     }
 }
 
@@ -291,13 +287,13 @@ async function felhasznaloklista() {
     });
 }
 
-async function kerdestorles() {
+async function kerdestorles(btn) {
     var select = document.getElementById("kerdeseklista");
     console.log("anyuci");
     const query = "delete FROM terkep where kerdes ='"+select.options[select.selectedIndex].text+"';"; // sortörlésxd select az gyak egy listbox a selec.options[]stb az self explanatory.
     console.log(query);
     const tablahossz = await LekerdezesEredmenye(query);
-        
+    flashButton(btn,"green");
     kerdeseklista();
 }
 
